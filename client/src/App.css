@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100vh;
+  font-family: "Sofia", sans-serif;
+  background: linear-gradient(#e66465, #9198e5);
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-top: 20px;
+  margin-bottom: 20px; 
+}
+.Navbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  width: 100%;
+  margin-top: 20px;
+}
+.randomRecipe,
+.favoriteRecipe{
+  padding: 10px;
+  background-color: #9186d9;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-family: "Sofia", sans-serif;
+  font-weight: bold;
+  margin-right: 20px;
+}
+.search-container {
+  margin-top: 30px;
+}
+.input-search {
+  padding: 10px;
+  border-radius: 10px;
+}
+.search-button {
+  
+  padding: 5px;
+  background-color: #9186d9;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-family: "Sofia", sans-serif;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-right: 20px;
+}
+
+/* Add your CSS styles for recipe cards here */
+.recipe-list {
+  margin-top: 100px;
+  display: flex;
+  overflow-x: auto; /* Add this to enable horizontal scrolling if necessary */
+}
+
+.recipe-card {
+  margin-right: 20px; /* Add some space between cards */
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.recipe-card:last-child {
+  margin-right: 0; /* Remove margin from the last card */
+}
+
+.recipe-card img {
+  max-width: 90%;
+  border-radius: 10px;
+  height: auto;
+}
+
+.recipe-card h2 {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
