@@ -1,14 +1,16 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
 
 import './App.css';
 import Navbar from './components/Navbar';
+import ThreeRandomDishes from './components/ThreeRandomDishes';
 import DishDetail from './components/DishDetails';
 
 function App() {
   const [recipes, setRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  
 
   useEffect (() => {
     async function fetchRecipes () {
@@ -24,26 +26,31 @@ function App() {
     fetchRecipes();
   }, []);
 
+ 
   return (
-   
-      <div className="App">
+   <BrowserRouter>
+    <div className="App">
         <h1>Foodie Delight</h1>
         <Navbar />
-        {isLoading ? (
-          <p>Loading...</p>
-          ) : (
-          <div className='recipe-list'>
-          { recipes.map((recipe) => (
-            <div className='recipe-card'>
-              <img src={recipe.image} alt={recipe.title} />
-              <p>{recipe.title}</p>
-            </div>
-          ))}
-          </div>
-          )}
-      </div>
-   
-   
+        <Routes>
+          <Route
+            path="/"
+            element={
+              isLoading ? (
+                <p>Loading...</p>
+              ) : (
+                <ThreeRandomDishes recipes={recipes} />
+              )
+            }
+          />
+          <Route
+            path="/dish/:id" // Define a route parameter for the dish ID
+            element={<DishDetail />}
+          />
+        </Routes>
+     </div>
+   </BrowserRouter>
+  
   );
 }
 

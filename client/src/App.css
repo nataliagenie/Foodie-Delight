@@ -6,6 +6,11 @@ body {
   height: 100vh;
   font-family: "Sofia", sans-serif;
   background: linear-gradient(#e66465, #9198e5);
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transition:  0.5s ease-in-out; 
   text-align: center;
 }
 
