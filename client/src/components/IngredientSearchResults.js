@@ -32,6 +32,7 @@ function IngredientSearchResults ({isLoading}) {
           <div className="recipe-card" key={recipe.id}>
             <img src={recipe.image} alt={recipe.title} />
             <p>{recipe.title}</p>
+            <p>{recipe.instructions}</p>
           </div>
         ))}
       </div>

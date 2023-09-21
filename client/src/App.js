@@ -44,6 +44,10 @@ function App() {
               )
             }
           />
+           <Route
+            path="/ingredient/:ingredient" // Define the path with a parameter
+            element={<IngredientSearchResults isLoading={false} />} // Render IngredientSearchResults
+          />
           
         </Routes>
      </div>
