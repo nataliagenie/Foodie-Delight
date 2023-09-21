@@ -1,11 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import {useParams} from 'react-router-dom';
+import {useParams, Link, Route, Routes} from 'react-router-dom';
+
+import InsForClickedRecipeFromSearch from './InsForClickedRecipeFromSearch';
 
 function IngredientSearchResults ({isLoading}) {
 
   const [recipes, setRecipes] = useState([]);
   const {ingredient} = useParams();
+  const { recipeId } = useParams();
 
   useEffect(() => {
     async function fetchRecipesByIngredient () {
@@ -22,6 +25,7 @@ function IngredientSearchResults ({isLoading}) {
   }, [ingredient]);
 
   return (
+   
     <div className='search-results'>
     <h2>Recipes containing {ingredient}:</h2>
     {isLoading ? (
@@ -31,14 +35,25 @@ function IngredientSearchResults ({isLoading}) {
         {recipes.map((recipe) => (
           <div className="recipe-card" key={recipe.id}>
             <img src={recipe.image} alt={recipe.title} />
-            <p>{recipe.title}</p>
-            <p>{recipe.instructions}</p>
+            <Link
+                to={`/ingredient/${ingredient}/${recipe.id}`} // Link to the detailed view
+                className="recipe-title-link"
+              >
+                {recipe.title}
+              </Link>
           </div>
         ))}
       </div>
     )}
-  </div>
-
+    <Routes>
+        <Route
+          path="/ingredient/:ingredient/:recipeId"
+          element={<InsForClickedRecipeFromSearch />}
+        />
+      </Routes>
+      
+    </div>
+      
   );
 }
 

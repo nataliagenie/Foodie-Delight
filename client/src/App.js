@@ -5,7 +5,9 @@ import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-rou
 import './App.css';
 import Navbar from './components/Navbar';
 import ThreeRandomDishes from './components/ThreeRandomDishes';
+import RandomDish from './components/RandomDish'
 import IngredientSearchResults from './components/IngredientSearchResults';
+import InsForClickedRecipeFromSearch from './components/InsForClickedRecipeFromSearch';
 
 
 function App() {
@@ -44,11 +46,10 @@ function App() {
               )
             }
           />
-           <Route
-            path="/ingredient/:ingredient" // Define the path with a parameter
-            element={<IngredientSearchResults isLoading={false} />} // Render IngredientSearchResults
+          <Route path="/random-dish" element={<RandomDish/>}/>
+          <Route path="/ingredient/:ingredient" element={<IngredientSearchResults isLoading={false} />} 
           />
-          
+          <Route path="/ingredient/:ingredient/:recipeId" element={<InsForClickedRecipeFromSearch/>} />
         </Routes>
      </div>
    </BrowserRouter>
