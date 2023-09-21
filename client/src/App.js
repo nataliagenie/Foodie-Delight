@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, BrowserRouter, Link } from 'react-router-dom';
 
 import './App.css';
 import Navbar from './components/Navbar';
@@ -33,7 +33,9 @@ function App() {
   return (
    <BrowserRouter>
     <div className="App">
-        <h1>Foodie Delight</h1>
+        <h1>
+        <Link to="/">Foodie Delight</Link>
+        </h1>
         <Navbar />
         <Routes>
           <Route
@@ -46,8 +48,8 @@ function App() {
               )
             }
           />
-          <Route path="/random-dish" element={<RandomDish/>}/>
-          <Route path="/ingredient/:ingredient" element={<IngredientSearchResults isLoading={false} />} 
+          <Route path="/random-dish" element={<RandomDish />}/>
+          <Route path="/ingredient/:ingredient/*" element={<IngredientSearchResults isLoading={false} />} 
           />
           <Route path="/ingredient/:ingredient/:recipeId" element={<InsForClickedRecipeFromSearch/>} />
         </Routes>

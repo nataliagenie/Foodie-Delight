@@ -11,14 +11,6 @@ function ThreeRandomDishes({ recipes }) {
   };
 
   return (
-    // <div className='recipe-list'>
-    //   {recipes.map((recipe) => (
-    //     <div className='recipe-card' key={recipe.id}>
-    //       <img src={recipe.image} alt={recipe.title} />
-    //       <p>{recipe.title}</p>
-    //     </div>
-    //   ))}
-    // </div>
 
     <div className='recipe-list'>
           {recipes.map((recipe) => (
