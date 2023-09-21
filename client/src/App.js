@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-rou
 import './App.css';
 import Navbar from './components/Navbar';
 import ThreeRandomDishes from './components/ThreeRandomDishes';
-import DishDetail from './components/DishDetails';
+import IngredientSearchResults from './components/IngredientSearchResults';
+
 
 function App() {
   const [recipes, setRecipes] = useState([]);
@@ -43,10 +44,7 @@ function App() {
               )
             }
           />
-          <Route
-            path="/dish/:id" // Define a route parameter for the dish ID
-            element={<DishDetail />}
-          />
+          
         </Routes>
      </div>
    </BrowserRouter>
