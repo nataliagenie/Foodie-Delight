@@ -8,6 +8,7 @@ import ThreeRandomDishes from './components/ThreeRandomDishes';
 import RandomDish from './components/RandomDish'
 import IngredientSearchResults from './components/IngredientSearchResults';
 import InsForClickedRecipeFromSearch from './components/InsForClickedRecipeFromSearch';
+import MyFavorites from './components/MyFavorites';
  
 
 function App() {
@@ -64,7 +65,8 @@ function App() {
               )
             }
           />
-          <Route path="/random-dish" element={<RandomDish />}/>
+          <Route path="/random-dish" element={<RandomDish />} />
+          <Route path="/my-favorites" element={<MyFavorites />}/>
           <Route path="/ingredient/:ingredient/*" element={<IngredientSearchResults isLoading={false} />} 
           />
           <Route path="/ingredient/:ingredient/:recipeId" element={<InsForClickedRecipeFromSearch/>} />

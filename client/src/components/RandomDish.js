@@ -6,9 +6,15 @@ import axios from 'axios';
 function RandomDish() {
   const [randomRecipe, setRandomRecipe] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  
+
+  const generateNewKey = () => {
+    const newKey = Math.random() * 0.001;
+    return newKey;
+  };
 
   useEffect(() => {
-    async function fetchRandomRecipe() {
+    async function fetchRandomRecipe(newKey) {
       try {
         const apiUrl = 'http://localhost:4242/random-dishes';
         const response = await axios.get(apiUrl);
@@ -19,8 +25,9 @@ function RandomDish() {
         setIsLoading(false); // Mark loading as complete (even on error)
       }
     }
-
-    fetchRandomRecipe();
+    const newKey = generateNewKey();
+    console.log(newKey);
+    fetchRandomRecipe(newKey);
   }, []);
 
   return (
