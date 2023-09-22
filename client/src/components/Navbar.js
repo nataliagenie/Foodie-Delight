@@ -2,17 +2,18 @@ import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 
 
-function Navbar ({ refreshKey, setRefreshKey }) {
+function Navbar () {
   const [searchText, setSearchText] = useState('');
-
-  const generateNewKey = () => {
-    setRefreshKey(Date.now()); // Use the current timestamp as a key
+  
+  
+  const getNewRecipeOnClick = () => {
+    window.location.reload();
   };
 
   return (
     <nav className="Navbar"> 
       <div className="button-containter">
-      <Link to="/random-dish" className="randomRecipe" onClick={generateNewKey}>
+      <Link to="/random-dish" className="randomRecipe" onClick={getNewRecipeOnClick}>
           Random Recipe
         </Link>
         <button className="favoriteRecipe">My Favorites</button>

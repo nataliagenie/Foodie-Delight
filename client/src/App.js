@@ -8,11 +8,12 @@ import ThreeRandomDishes from './components/ThreeRandomDishes';
 import RandomDish from './components/RandomDish'
 import IngredientSearchResults from './components/IngredientSearchResults';
 import InsForClickedRecipeFromSearch from './components/InsForClickedRecipeFromSearch';
-
+ 
 
 function App() {
   const [recipes, setRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [favorites, setFavorites] = useState([]);
   
 
   useEffect (() => {
@@ -29,6 +30,17 @@ function App() {
     fetchRecipes();
   }, []);
 
+  // Function to add a recipe to favorites
+  const addToFavorites = (recipe) => {
+    setFavorites([...favorites, recipe]);
+  };
+
+  // Function to remove a recipe from favorites
+  const removeFromFavorites = (recipeId) => {
+    const updatedFavorites = favorites.filter((recipe) => recipe.id !== recipeId);
+    setFavorites(updatedFavorites);
+  };
+
  
   return (
    <BrowserRouter>
@@ -44,7 +56,11 @@ function App() {
               isLoading ? (
                 <p>Loading...</p>
               ) : (
-                <ThreeRandomDishes recipes={recipes} />
+                <ThreeRandomDishes
+                recipes={recipes}
+                addToFavorites={addToFavorites}
+                removeFromFavorites={removeFromFavorites}
+                favorites={favorites} />
               )
             }
           />
