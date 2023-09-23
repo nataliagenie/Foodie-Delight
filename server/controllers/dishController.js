@@ -3,9 +3,7 @@
 const Dish = require('../models/Dish');
 const axios = require('axios');
 const cheerio = require('cheerio');
-//api from hongnhungpham130995@gmail.com
-const apiKey = 'b81e42a35a164c749f93dae5d78f08b6';
-// const extra_apiKey = '215c6eb9a0b54d72beee3744f74b3071';
+const apiKey = process.env.API_KEY;
 
 
 //this is for my main page, it should be showing 3 random dishes
