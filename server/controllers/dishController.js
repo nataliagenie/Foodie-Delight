@@ -89,3 +89,21 @@ exports.getLikedDishes = async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 }
+
+exports.deleteLikedDish = async (req, res) => {
+  try {
+    const dishId = req.params.dishId;
+
+    // Use findByIdAndRemove to delete the dish by its _id
+    const deletedDish = await Dish.findByIdAndRemove(dishId);
+
+    if (!deletedDish) {
+      return res.status(404).json({ message: 'Dish not found' });
+    }
+
+    res.status(200).json({ message: 'Dish deleted successfully' });
+  } catch (err) {
+    console.error('Error:', err);
+    res.status(500).send('Internal Server Error');
+  }
+}
