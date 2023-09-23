@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import axios from 'axios';
 
 function ThreeRandomDishes({ recipes , recipesThatAreLiked}) {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
@@ -13,11 +14,18 @@ function ThreeRandomDishes({ recipes , recipesThatAreLiked}) {
   };
 
 
-  const handleLikeClick = (recipe) => {
-    setLikedRecipes((prevLikedRecipes) => ({
-      ...prevLikedRecipes,
-      [recipe.title]: !prevLikedRecipes[recipe.title],
-    }));
+  const handleLikeClick = async (recipe) => {
+    try {
+      // Make a POST request to like the recipe
+      await axios.post(`http://localhost:4242/likedDishes`, recipe);
+      setLikedRecipes((prevLikedRecipes) => ({
+        ...prevLikedRecipes,
+        [recipe.title]: !prevLikedRecipes[recipe.title],
+      }));
+    } catch (err) {
+      console.log('Error', err);
+    }
+  
   };
   
   return (
@@ -33,7 +41,7 @@ function ThreeRandomDishes({ recipes , recipesThatAreLiked}) {
                   {recipe.title}
                 </p>
                 <button
-                  className={`like-button ${likedRecipes[recipe.title] ? 'liked' : ''}`}
+                  className={`like-button ${likedRecipes[recipe.title] ? 'liked' : 'not-liked'}`}
                   onClick={() => handleLikeClick(recipe)}
                 >
                 {likedRecipes[recipe.title] ? 'Liked' : 'Like'}

@@ -8,7 +8,6 @@ function IngredientSearchResults ({isLoading}) {
 
   const [recipes, setRecipes] = useState([]);
   const {ingredient} = useParams();
-  const { recipeId } = useParams();
 
   useEffect(() => {
     async function fetchRecipesByIngredient () {
@@ -31,9 +30,9 @@ function IngredientSearchResults ({isLoading}) {
     {isLoading ? (
       <p>Loading...</p>
     ) : (
-      <div className="recipe-list">
+      <div className="recipe-list-from-search">
         {recipes.map((recipe) => (
-          <div className="recipe-card" key={recipe.id}>
+          <div className="recipe-card-from search" key={recipe.id}>
             <img src={recipe.image} alt={recipe.title} />
             <Link
                 to={`/ingredient/${ingredient}/${recipe.id}`} // Link to the detailed view
