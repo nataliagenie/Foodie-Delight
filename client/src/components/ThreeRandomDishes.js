@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 
-function ThreeRandomDishes({ recipes }) {
+function ThreeRandomDishes({ recipes , recipesThatAreLiked}) {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [likedRecipes, setLikedRecipes] = useState({});
-
+  
   const handleTitleClick = (recipe) => {
     if (selectedRecipe === recipe) {
       setSelectedRecipe(null);
@@ -12,16 +12,14 @@ function ThreeRandomDishes({ recipes }) {
     }
   };
 
+
   const handleLikeClick = (recipe) => {
-    // Toggle the liked state for the clicked recipe
-    console.log('Like button clicked for', recipe.title);
     setLikedRecipes((prevLikedRecipes) => ({
       ...prevLikedRecipes,
       [recipe.title]: !prevLikedRecipes[recipe.title],
     }));
   };
-
-
+  
   return (
 
     <div className='recipe-list'>
