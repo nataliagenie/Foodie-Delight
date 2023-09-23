@@ -7,6 +7,10 @@ const dishSchema = new mongoose.Schema({
   image: String,
   summary: String,
   instructions: String,
+  liked: {
+    type: Boolean,
+    default: false // Initial liked status is set to false
+  }
 });
 
 const Dish = mongoose.model('Dish', dishSchema);
