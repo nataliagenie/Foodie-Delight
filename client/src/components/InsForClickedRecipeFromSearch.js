@@ -21,7 +21,7 @@ function InsForClickedRecipeFromSearch() {
   }, [recipeId]);
 
   return (
-    <div>
+    <div className='InsClickedRecipe'>
       {recipeDetails && (
         <>
           <img src={recipeDetails.image} alt={recipeDetails.title} />
