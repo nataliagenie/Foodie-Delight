@@ -1,29 +1,24 @@
 
 
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { fetchRecipeDetails } from '../apiServices/apiServices';
 
 function InsForClickedRecipeFromSearch() {
   const { recipeId } = useParams();
-  const apiKey = 'b81e42a35a164c749f93dae5d78f08b6';
-
   const [recipeDetails, setRecipeDetails] = useState(null);
 
   useEffect(() => {
-    async function fetchRecipeDetails() {
+    async function fetchData() {
       try {
-        const apiUrl = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`;
-        const response = await axios.get(apiUrl);
-
-        setRecipeDetails(response.data);
-      } catch (error) {
-        console.error('Error:', error);
+        const data = await fetchRecipeDetails(recipeId); 
+        setRecipeDetails(data);
+      } catch (err) {
+        console.log(err);
       }
     }
-
-    fetchRecipeDetails();
-  }, [recipeId, apiKey]);
+    fetchData();
+  }, [recipeId]);
 
   return (
     <div>
