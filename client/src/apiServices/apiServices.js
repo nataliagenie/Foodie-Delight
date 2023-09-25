@@ -45,3 +45,11 @@ export async function fetchRecipeDetails(recipeId) {
     throw err;
   }
 }
+
+export async function removeFromFavorites(dishId) {
+  try {
+    await axios.delete(`http://localhost:4242/likedDishes/${dishId}`);
+  } catch (err) {
+    throw(err);
+  }
+}

@@ -1,12 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { removeFromFavorites } from '../apiServices/apiServices';
 
 function MyFavorites() {
   const [likedDishes, setLikedDishes] = useState([]);
 
   useEffect(() => {
-    // Make an HTTP GET request to fetch liked dishes
     axios.get('http://localhost:4242/likedDishes')
       .then((response) => {
         setLikedDishes(response.data);
@@ -14,13 +14,11 @@ function MyFavorites() {
       .catch((error) => {
         console.error('Error:', error);
       });
-  }, []); // The empty array [] ensures that this effect runs only once when the component mounts.
+  }, []); 
 
-  const removeFromFavorites = (dishId) => {
-    // Make an HTTP DELETE request to remove the dish from favorites
-    axios.delete(`http://localhost:4242/likedDishes/${dishId}`)
+  const handleRemoveFromFavorites = (dishId) => {
+    removeFromFavorites(dishId)
       .then(() => {
-        // Update the list of liked dishes after removal
         setLikedDishes((prevDishes) => prevDishes.filter((dish) => dish._id !== dishId));
       })
       .catch((error) => {
@@ -37,7 +35,7 @@ function MyFavorites() {
             <div className='left-fav-dish-card'>
               <h2>{dish.title}</h2>
               <img src={dish.image} alt={dish.title} />
-              <button onClick={() => removeFromFavorites(dish._id)}>Remove from My Favorites</button>
+              <button onClick={() => handleRemoveFromFavorites(dish._id)}>Remove from My Favorites</button>
             </div>
             <div className='right-fav-dish-card'>
               <p><strong>Instructions:</strong> {dish.instructions}</p>
