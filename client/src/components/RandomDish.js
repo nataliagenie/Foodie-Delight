@@ -1,7 +1,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { fetchRandomDishes } from '../apiServices/apiServices'; 
 
 function RandomDish() {
   const [randomRecipe, setRandomRecipe] = useState(null);
@@ -14,20 +14,19 @@ function RandomDish() {
   };
 
   useEffect(() => {
-    async function fetchRandomRecipe(newKey) {
+    async function fetchData() {
+      const newKey = generateNewKey();
+      console.log(newKey);
       try {
-        const apiUrl = 'http://localhost:4242/random-dishes';
-        const response = await axios.get(apiUrl);
-        setRandomRecipe(response.data);
+        const data = await fetchRandomDishes(); // Use the fetchRandomRecipe function
+        setRandomRecipe(data);
         setIsLoading(false); // Mark loading as complete
       } catch (error) {
-        console.error('Error:', error);
         setIsLoading(false); // Mark loading as complete (even on error)
       }
     }
-    const newKey = generateNewKey();
-    console.log(newKey);
-    fetchRandomRecipe(newKey);
+
+    fetchData();
   }, []);
 
   return (

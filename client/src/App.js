@@ -11,24 +11,28 @@ import IngredientSearchResults from './components/IngredientSearchResults';
 import InsForClickedRecipeFromSearch from './components/InsForClickedRecipeFromSearch';
 import MyFavorites from './components/MyFavorites';
 
+import { fetchRandomDishes } from './apiServices/apiServices';
+
 function App() {
   const [recipes, setRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [favorites, setFavorites] = useState([]);
   const [recipesThatAreLiked, setRecipesThatAreLiked] = useState([]); // Add this state
 
+  
   useEffect(() => {
-    async function fetchRecipes() {
+    async function fetchData() {
       try {
-        const response = await axios.get('http://localhost:4242/random-dishes');
-        setRecipes(response.data);
+        const data = await fetchRandomDishes(); // Use the fetchRandomDishes function
+        setRecipes(data);
         setIsLoading(false);
       } catch (err) {
         console.error(err);
         setIsLoading(false);
       }
     }
-    fetchRecipes();
+
+    fetchData();
   }, []);
 
   useEffect(() => {
