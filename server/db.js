@@ -16,4 +16,4 @@ mongoose.connection.on('open', function (ref) {
   })
 })
 
-module.exports(mongoose);
+module.exports = mongoose;
