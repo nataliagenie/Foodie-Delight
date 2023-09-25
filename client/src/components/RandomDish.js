@@ -18,11 +18,11 @@ function RandomDish() {
       const newKey = generateNewKey();
       console.log(newKey);
       try {
-        const data = await fetchRandomDishes(); // Use the fetchRandomRecipe function
+        const data = await fetchRandomDishes(); 
         setRandomRecipe(data);
-        setIsLoading(false); // Mark loading as complete
+        setIsLoading(false); 
       } catch (error) {
-        setIsLoading(false); // Mark loading as complete (even on error)
+        setIsLoading(false); 
       }
     }
 

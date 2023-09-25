@@ -34,7 +34,7 @@ function IngredientSearchResults ({isLoading}) {
           <div className="recipe-card-from search" key={recipe.id}>
             <img src={recipe.image} alt={recipe.title} />
             <Link
-                to={`/ingredient/${ingredient}/${recipe.id}`} // Link to the detailed view
+                to={`/ingredient/${ingredient}/${recipe.id}`} 
                 className="recipe-title-link"
               >
                 {recipe.title}
