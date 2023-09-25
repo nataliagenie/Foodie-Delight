@@ -47,17 +47,14 @@ exports.saveLikedDish = async (req, res) => {
   try {
     const dishData = req.body;
 
-    // Check if the dish with the same data already exists
     const existingDish = await Dish.findOne(dishData);
 
     if (existingDish) {
       return res.status(400).json({ message: 'Dish already liked' });
     }
 
-    // Create a new dish record with the liked status
     const newDish = new Dish({ ...dishData, liked: true });
 
-    // Save the new liked dish to the database
     await newDish.save();
 
     res.status(200).json({ message: 'Dish liked and saved successfully' });
@@ -72,15 +69,13 @@ exports.saveLikedDish = async (req, res) => {
 
 exports.getLikedDishes = async (req, res) => {
   try {
-    // Find all dishes that have been liked (where liked is true)
+ 
     const likedDishes = await Dish.find({ liked: true });
 
-    // If no liked dishes are found, you can return an empty array or an appropriate message
     if (likedDishes.length === 0) {
       return res.status(404).json({ message: 'No liked dishes found' });
     }
 
-    // Return the liked dishes in the response
     res.status(200).json(likedDishes);
   } catch (err) {
     console.error('Error:', err);
@@ -92,7 +87,6 @@ exports.deleteLikedDish = async (req, res) => {
   try {
     const dishId = req.params.dishId;
 
-    // Use findByIdAndRemove to delete the dish by its _id
     const deletedDish = await Dish.findByIdAndRemove(dishId);
 
     if (!deletedDish) {
@@ -102,6 +96,6 @@ exports.deleteLikedDish = async (req, res) => {
     res.status(200).json({ message: 'Dish deleted successfully' });
   } catch (err) {
     console.error('Error:', err);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send('Not able to delete the dish');
   }
 }
