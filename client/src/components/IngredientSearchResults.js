@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
 import {useParams, Link, Route, Routes} from 'react-router-dom';
 
 import InsForClickedRecipeFromSearch from './InsForClickedRecipeFromSearch';
+import { fetchRecipesByIngredient } from '../apiServices/apiServices';
 
 function IngredientSearchResults ({isLoading}) {
 
@@ -10,17 +10,16 @@ function IngredientSearchResults ({isLoading}) {
   const {ingredient} = useParams();
 
   useEffect(() => {
-    async function fetchRecipesByIngredient () {
+    async function fetchData() {
       try {
-        const apiKey = 'b81e42a35a164c749f93dae5d78f08b6';
-        const response = await axios.get (`https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=${ingredient}`
-        );
-        setRecipes(response.data);
+        const data = await fetchRecipesByIngredient(ingredient); 
+        setRecipes(data);
       } catch (err) {
         console.log(err);
       }
     }
-    fetchRecipesByIngredient();
+
+    fetchData();
   }, [ingredient]);
 
   return (

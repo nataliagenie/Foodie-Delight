@@ -1,4 +1,5 @@
 import axios from 'axios';
+const API_KEY = 
 
 export async function fetchRandomDishes() {
   try {
@@ -32,3 +33,17 @@ export async function handleLikeClick (recipe, setLikedRecipes) {
   }
 
 };
+
+
+
+
+export async function fetchRecipesByIngredient(ingredient) {
+  try {
+    const response = await axios.get(
+      `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${API_KEY}&ingredients=${ingredient}`
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+}
