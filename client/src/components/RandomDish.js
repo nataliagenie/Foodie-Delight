@@ -6,17 +6,10 @@ import { fetchRandomDishes } from '../apiServices/apiServices';
 function RandomDish() {
   const [randomRecipe, setRandomRecipe] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  
 
-  const generateNewKey = () => {
-    const newKey = Math.random() * 0.001;
-    return newKey;
-  };
 
   useEffect(() => {
     async function fetchData() {
-      const newKey = generateNewKey();
-      console.log(newKey);
       try {
         const data = await fetchRandomDishes(); 
         setRandomRecipe(data);

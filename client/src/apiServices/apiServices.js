@@ -1,5 +1,5 @@
 import axios from 'axios';
-const apiKey = '';
+const apiKey = '8b8a651883de41c29977607460e2be7b';
 
 export async function fetchRandomDishes() {
   try {
