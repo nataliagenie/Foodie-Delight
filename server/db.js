@@ -1,19 +1,12 @@
 
 const mongoose = require('mongoose');
 
-const DB_URL = 'mongodb://localhost:27017/FoodieDelights';
+main().catch((err) => console.log(err));
 
-mongoose.connect(DB_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-
-mongoose.connection.on('open', function (ref) {
-  console.log('Connected to mongo server.');
-
-  mongoose.connection.db.listCollections().toArray(function (err,names) {
-    console.log(names);
-  })
-})
+async function main() {
+  await mongoose.connect('mongodb://127.0.0.1:27017/FoodieDelights')
+    .then(() => console.log('Connected to MongoDB'))
+    .catch((err) => console.error('Error connecting to MongoDB:', err));
+}
 
 module.exports = mongoose;

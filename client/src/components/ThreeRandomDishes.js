@@ -7,20 +7,28 @@ function ThreeRandomDishes({ recipes, recipesThatAreLiked }){
   const [likedRecipes, setLikedRecipes] = useState({});
 
   const handleTitleClick = (recipe) => {
+    console.log("HOLA")
+
     if (selectedRecipe === recipe) {
       setSelectedRecipe(null);
+      console.log("HOLA")
+
     } else {
+      console.log("HOLA")
+
       setSelectedRecipe(recipe);
     }
+
   };
 
+  
   const handleLikeClickWrapper = (recipe) => {
     handleLikeClick(recipe, setLikedRecipes);
   };
 
   return (
     <div className='recipe-list'>
-      {recipes.map((recipe) => (
+      { recipes.map((recipe) => (
         <div className='recipe-card' key={recipe.title}>
           <img src={recipe.image} alt={recipe.title} />
           <p className='recipe-title' onClick={() => handleTitleClick(recipe)}>

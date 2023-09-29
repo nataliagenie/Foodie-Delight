@@ -3,9 +3,12 @@
 import React, { useState, useEffect } from 'react';
 import { fetchRandomDishes } from '../apiServices/apiServices'; 
 
+
 function RandomDish() {
   const [randomRecipe, setRandomRecipe] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+
+  
 
 
   useEffect(() => {
@@ -13,6 +16,7 @@ function RandomDish() {
       try {
         const data = await fetchRandomDishes(); 
         setRandomRecipe(data);
+        console.log("dondeee!", data)
         setIsLoading(false); 
       } catch (error) {
         setIsLoading(false); 
