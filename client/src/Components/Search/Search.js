@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useParams, Link, Route, Routes} from 'react-router-dom';
 
 import InsForClickedRecipeFromSearch from './InsForClickedRecipeFromSearch';
-import { fetchRecipesByIngredient } from '../apiServices/apiServices';
+import { fetchRecipesByIngredient } from '../../apiServices/apiServices';
 
 function IngredientSearchResults ({isLoading}) {
 

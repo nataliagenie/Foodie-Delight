@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { removeFromFavorites } from '../apiServices/apiServices';
+import { removeFromFavorites } from '../../apiServices/apiServices';
 
 function MyFavorites() {
   const [likedDishes, setLikedDishes] = useState([]);

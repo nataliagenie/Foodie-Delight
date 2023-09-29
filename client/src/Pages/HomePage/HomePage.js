@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { handleLikeClick } from '../apiServices/apiServices';
+import { handleLikeClick } from '../../apiServices/apiServices';
 
 function ThreeRandomDishes({ recipes, recipesThatAreLiked }){
   const [selectedRecipe, setSelectedRecipe] = useState(null);

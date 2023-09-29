@@ -1,7 +1,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { fetchRandomDishes } from '../apiServices/apiServices'; 
+import { fetchRandomDishes } from '../../apiServices/apiServices'; 
 
 
 function RandomDish() {
