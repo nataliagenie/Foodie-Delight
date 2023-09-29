@@ -1,28 +1,13 @@
 
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { removeFromFavorites } from '../apiServices/apiServices';
+import React from 'react';
+import { useLikedDishes } from '../apiServices/apiServices';
 
 function MyFavorites() {
-  const [likedDishes, setLikedDishes] = useState([]);
-
-  useEffect(() => {
-    axios.get('http://localhost:4242/likedDishes')
-      .then((response) => {
-        setLikedDishes(response.data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  }, []); 
+  const [likedDishes, removeFavorite] = useLikedDishes();
 
   const handleRemoveFromFavorites = (dishId) => {
-    removeFromFavorites(dishId)
-      .then(() => {
-        setLikedDishes((prevDishes) => prevDishes.filter((dish) => dish._id !== dishId));
-      })
-      .catch((error) => {
-        console.error('Error:', error);
+      removeFavorite(dishId).catch(e => {
+          console.log(e)
       });
   };
 
@@ -40,12 +25,12 @@ function MyFavorites() {
             <div className='right-fav-dish-card'>
               <p><strong>Instructions:</strong> {dish.instructions}</p>
             </div>
-          
           </div>
         ))}
       </div>
     </div>
   );
 }
+
 
 export default MyFavorites;

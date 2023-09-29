@@ -10,7 +10,7 @@ import IngredientSearchResults from './components/IngredientSearchResults';
 import InsForClickedRecipeFromSearch from './components/InsForClickedRecipeFromSearch';
 import MyFavorites from './components/MyFavorites';
 
-import { fetchRandomDishes } from './apiServices/apiServices';
+import { useFetchRandomDishes } from './apiServices/apiServices';
 
 function App() {
   const [recipes, setRecipes] = useState([]);

@@ -1,16 +1,23 @@
 import axios from 'axios';
-const apiKey = '8b8a651883de41c29977607460e2be7b';
+import { useEffect , useState } from 'react';
 
-export async function fetchRandomDishes() {
-  try {
-    const response = await axios.get('http://localhost:4242/random-dishes');
-    return response.data;
-  } catch (err) {
-    console.error(err);
-  }
+
+export const useFetchRandomDishes = () => {
+    const [randomRecipe, setRandomRecipe] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        axios.get('http://localhost:4242/random-dishes').then(response => {
+            setRandomRecipe(response.data);
+            setIsLoading(false);
+        }).catch(e => {
+            setIsLoading(false);
+            console.log(e)
+        });
+    }, []);
+
+    return [isLoading, randomRecipe]
 }
-
-
 export async function handleLikeClick (recipe, setLikedRecipes) {
   try {
     await axios.post(`http://localhost:4242/likedDishes`, recipe);
@@ -25,31 +32,51 @@ export async function handleLikeClick (recipe, setLikedRecipes) {
 };
 
 
-export async function fetchRecipesByIngredient(ingredient) {
-  try {
-    const response = await axios.get(
-      `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${apiKey}&ingredients=${ingredient}`
-    );
-    return response.data;
-  } catch (err) {
-    throw err;
-  }
+export function useFetchRecipesByIngredient(ingredient) {
+    const [recipes, setRecipes] = useState([]);
+    const [isLoading, setLoading] = useState(false);
+
+    useEffect(() => {
+        setLoading(true);
+        axios.get(
+            `https://api.spoonacular.com/recipes/findByIngredients?apiKey=${process.env.REACT_APP_API_KEY}&ingredients=${ingredient}`
+        ).then(response => {
+            setRecipes(response.data);
+            setLoading(false);
+        }).catch(e => {
+            console.log(e);
+            setLoading(false);
+        });
+    }, [ingredient]);
+
+    return [isLoading, recipes];
 }
 
-export async function fetchRecipeDetails(recipeId) {
-  try {
-    const apiUrl = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`;
-    const response = await axios.get(apiUrl);
-    return response.data;
-  } catch(err) {
-    throw err;
-  }
+export const useFetchRecipeDetails = (recipeId) => {
+    const [recipeDetails, setRecipeDetails] = useState(null);
+    const apiUrl = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${process.env.REACT_APP_API_KEY}`;
+    axios.get(apiUrl).then(response => setRecipeDetails(response.data));
+    return recipeDetails;
 }
 
-export async function removeFromFavorites(dishId) {
-  try {
-    await axios.delete(`http://localhost:4242/likedDishes/${dishId}`);
-  } catch (err) {
-    throw(err);
-  }
+export const useLikedDishes = () => {
+    const [likedDishes, setLikedDishes] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:4242/likedDishes')
+            .then((response) => {
+                setLikedDishes(response.data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }, []);
+
+    const removeFavorite = (dishId) => {
+        return axios.delete(`http://localhost:4242/likedDishes/${dishId}`).then(() => {
+            setLikedDishes((prevDishes) => prevDishes.filter((dish) => dish._id !== dishId));
+        });
+    }
+
+    return [likedDishes, removeFavorite];
 }

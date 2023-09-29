@@ -5,13 +5,14 @@
 const express = require('express');
 const router = require('./router.js');
 const cors = require('cors');
+const mongoose = require('./db.js')
 
 //instances
 
 const app = express();
 const PORT = 4242;
 
-const mongoose = require('./db.js')
+// const mongoose = require('./db.js')
 
 app.use(cors());
 app.use(express.json());
