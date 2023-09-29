@@ -1,11 +1,11 @@
 'use strict';
-require('dotenv').config();
+// require('dotenv').config();
 // import 'dotenv/config'
 
 const Dish = require('../models/Dish');
 const axios = require('axios');
 const cheerio = require('cheerio');
-const apiKey = process.env.apiKey;
+const apiKey = "21f51898cd7a4d489d4f9c3aac1b93fc";
 
 
 //this is for my main page, it should be showing 3 random dishes

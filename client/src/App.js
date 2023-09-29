@@ -3,16 +3,17 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 import './App.css';
-import Navbar from './components/Navbar';
-import ThreeRandomDishes from './components/ThreeRandomDishes';
-import RandomDish from './components/RandomDish';
-import IngredientSearchResults from './components/IngredientSearchResults';
-import InsForClickedRecipeFromSearch from './components/InsForClickedRecipeFromSearch';
-import MyFavorites from './components/MyFavorites';
+import Navbar from './Components/NavBar/NavBar';
+import HomePage from './Pages/HomePage/HomePage';
+import Recipe from './Pages/Recipe/Recipe';
+import MyFavorites from './Pages/MyFavorites/MyFavorites';
+import SearchResults from './Pages/SearchResults/SearchResults';
+import DishGenerator from './Pages/DishGenerator/DishGenerator';
 
-import { fetchRandomDishes } from './apiServices/apiServices';
+import { fetchRandomDishes } from './ApiServices/apiServices'
 
-function App() {
+
+export default function App() {
   const [recipes, setRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [favorites, setFavorites] = useState([]);
@@ -54,7 +55,7 @@ function App() {
               isLoading ? (
                 <p>Loading...</p>
               ) : (
-                <ThreeRandomDishes
+                <HomePage
                   recipes={recipes}
                   favorites={favorites}
                   recipesThatAreLiked={recipesThatAreLiked} 
@@ -62,23 +63,22 @@ function App() {
               )
             }
           />
-          <Route path="/random-dish" element={<RandomDish />} />
+          <Route path="/random-dish" element={<DishGenerator />} />
           <Route
             path="/my-favorites"
             element={<MyFavorites recipesThatAreLiked={recipesThatAreLiked} />} 
           />
           <Route
             path="/ingredient/:ingredient/*"
-            element={<IngredientSearchResults isLoading={false} />}
+            element={<SearchResults isLoading={false} />}
           />
           <Route
             path="/ingredient/:ingredient/:recipeId"
-            element={<InsForClickedRecipeFromSearch />}
+            element={<Recipe />}
           />
+          <Route path="*" element={<div>Page Not Found</div>} />
         </Routes>
       </div>
     </Router>
   );
 }
-
-export default App;

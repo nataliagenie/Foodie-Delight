@@ -3,12 +3,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function Navbar() {
+export default function Navbar() {
   const [searchText, setSearchText] = useState('');
   
   return (
     <nav className="Navbar">
       <div className="button-container">
+
         <Link to={'/random-dish'} className="randomRecipe" reloadDocument >
           Random Recipe
         </Link>
@@ -35,4 +36,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+
