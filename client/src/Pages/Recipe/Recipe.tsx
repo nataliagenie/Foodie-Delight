@@ -4,9 +4,13 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchRecipeDetails } from '../../ApiServices/apiServices';
 
+import { RecipeType, Step, Instruction } from '../../@types/recipe';
+
+
+
 export default function Recipe() {
   const { recipeId } = useParams();
-  const [recipeDetails, setRecipeDetails] = useState(null);
+  const [recipeDetails, setRecipeDetails] = useState<RecipeType | null>(null);
 
   useEffect(() => {
     async function fetchData() {

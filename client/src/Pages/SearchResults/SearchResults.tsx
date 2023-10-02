@@ -1,13 +1,23 @@
 import React, {useState, useEffect} from 'react';
 import {useParams, Link, Route, Routes} from 'react-router-dom';
 
-import InsForClickedRecipeFromSearch from './InsForClickedRecipeFromSearch';
-import { fetchRecipesByIngredient } from '../../apiServices/apiServices';
+import { fetchRecipesByIngredient } from '../../ApiServices/apiServices';
+import Recipe from '../Recipe/Recipe';
+
+import { RecipeType } from '../../@types/recipe';
 
 
-export default function SearchResults ({isLoading}) {
 
-  const [recipes, setRecipes] = useState([]);
+interface SearchResultsProps {
+  isLoading: boolean;
+}
+
+
+
+
+export default function SearchResults({ isLoading }: SearchResultsProps) {
+
+  const [recipes, setRecipes] = useState<RecipeType[]>([]);
   const {ingredient} = useParams();
 
   useEffect(() => {

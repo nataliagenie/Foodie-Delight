@@ -1,31 +1,27 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-
 import './App.css';
-// import Navbar from './components/Navbar';
 import Navbar from './Components/NavBar/NavBar';
-
-import ThreeRandomDishes from './components/ThreeRandomDishes';
-import RandomDish from './components/RandomDish';
-import IngredientSearchResults from './components/IngredientSearchResults';
-import InsForClickedRecipeFromSearch from './components/InsForClickedRecipeFromSearch';
-import MyFavorites from './components/MyFavorites';
-
+import Recipe from './Pages/Recipe/Recipe';
+import MyFavorites from './Pages/MyFavorites/MyFavorites';
+import SearchResults from './Pages/SearchResults/SearchResults';
+import DishGenerator from './Pages/DishGenerator/DishGenerator';
 import { fetchRandomDishes } from './ApiServices/apiServices'
+import HomePage from './Pages/HomePage/HomePage'; 
+import { RecipeType, Instruction } from './@types/recipe';
 
 
-export default function App() {
-  const [recipes, setRecipes] = useState([]);
+
+
+
+const App: FC = () => {
+  const [recipes, setRecipes] = useState<RecipeType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [favorites, setFavorites] = useState([]);
-  const [recipesThatAreLiked, setRecipesThatAreLiked] = useState([]); 
-
-  
-  useEffect(() => {
+  const [favorites, setFavorites] = useState<string[]>([]); 
+  const [recipesThatAreLiked, setRecipesThatAreLiked] = useState<RecipeType[]>([]);  useEffect(() => {
     async function fetchData() {
       try {
-        const data = await fetchRandomDishes(); 
+        const data = await fetchRandomDishes();
         setRecipes(data);
         setIsLoading(false);
       } catch (err) {
@@ -33,23 +29,18 @@ export default function App() {
         setIsLoading(false);
       }
     }
-
     fetchData();
-  }, []);
-
-  useEffect(() => {
-    const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
+  }, []);  useEffect(() => {
+    const item = localStorage.getItem('favorites');
+    const savedFavorites = item ? JSON.parse(item) : [];
     setFavorites(savedFavorites);
-  }, []);
-
-
-  return (
+  }, []);  return (
     <Router>
       <div className="App">
         <h1>
           <Link to="/"></Link>
         </h1>
-        <NavBar />
+        <Navbar />
         <Routes>
           <Route
             path="/"
@@ -59,8 +50,7 @@ export default function App() {
               ) : (
                 <HomePage
                   recipes={recipes}
-                  favorites={favorites}
-                  recipesThatAreLiked={recipesThatAreLiked} 
+                  recipesThatAreLiked={recipesThatAreLiked}
                 />
               )
             }
@@ -68,7 +58,7 @@ export default function App() {
           <Route path="/random-dish" element={<DishGenerator />} />
           <Route
             path="/my-favorites"
-            element={<MyFavorites recipesThatAreLiked={recipesThatAreLiked} />} 
+            element={<MyFavorites recipesThatAreLiked={recipesThatAreLiked} />}
           />
           <Route
             path="/ingredient/:ingredient/*"
@@ -84,3 +74,4 @@ export default function App() {
     </Router>
   );
 }
+export default App;

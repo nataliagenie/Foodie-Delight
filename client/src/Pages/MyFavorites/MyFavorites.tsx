@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { fetchLikedDishes, removeFromFavorites } from '../../ApiServices/apiServices';
+import { FavoriteRecipeType } from '../../@types/recipe';
 
-export default function MyFavorites() {
-  const [likedDishes, setLikedDishes] = useState([]);
+
+interface MyFavoritesProps {
+  recipesThatAreLiked: FavoriteRecipeType[];
+}
+
+
+
+export default function MyFavorites({recipesThatAreLiked}: MyFavoritesProps) {
+  const [likedDishes, setLikedDishes] = useState<FavoriteRecipeType[]>([]);
+
 
   useEffect(() => {
     async function fetchData() {
@@ -16,7 +25,7 @@ export default function MyFavorites() {
     fetchData();
   }, []); 
 
-  const handleRemoveFromFavorites = (dishId) => {
+  const handleRemoveFromFavorites = (dishId: string) => {
     removeFromFavorites(dishId)
       .then(() => {
         setLikedDishes((prevDishes) => prevDishes.filter((dish) => dish._id !== dishId));
@@ -46,3 +55,4 @@ export default function MyFavorites() {
     </div>
   );
 }
+
