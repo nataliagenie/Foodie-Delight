@@ -3,7 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 import './App.css';
-import Navbar from './components/Navbar';
+// import Navbar from './components/Navbar';
+import Navbar from './Components/NavBar/NavBar';
+
 import ThreeRandomDishes from './components/ThreeRandomDishes';
 import RandomDish from './components/RandomDish';
 import IngredientSearchResults from './components/IngredientSearchResults';

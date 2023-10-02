@@ -4,6 +4,7 @@ import {useParams, Link, Route, Routes} from 'react-router-dom';
 import InsForClickedRecipeFromSearch from './InsForClickedRecipeFromSearch';
 import { fetchRecipesByIngredient } from '../../apiServices/apiServices';
 
+
 export default function SearchResults ({isLoading}) {
 
   const [recipes, setRecipes] = useState([]);
