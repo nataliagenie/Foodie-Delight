@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchRecipeDetails } from '../../apiServices/apiServices';
+import { fetchRecipeDetails } from '../../ApiServices/apiServices';
 
 export default function Recipe() {
   const { recipeId } = useParams();
@@ -21,7 +21,7 @@ export default function Recipe() {
   }, [recipeId]);
 
   return (
-    <div className='InsClickedRecipe'>
+    <div className='Recipe'>
       {recipeDetails && (
         <>
           <img src={recipeDetails.image} alt={recipeDetails.title} />

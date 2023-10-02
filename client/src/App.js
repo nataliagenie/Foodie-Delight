@@ -3,16 +3,17 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 import './App.css';
-import NavBar from './Components/NavBar/NavBar';
-import HomePage from './Pages/HomePage/HomePage';
-import DishGenerator from './Pages/DishGenerator/DishGenerator';
-import SearchResults from './Pages/SearchResults/SearchResults';
-import Recipe from './Pages/Recipe/Recipe';
-import MyFavorites from './Pages/MyFavorites/MyFavorites';
+import Navbar from './components/Navbar';
+import ThreeRandomDishes from './components/ThreeRandomDishes';
+import RandomDish from './components/RandomDish';
+import IngredientSearchResults from './components/IngredientSearchResults';
+import InsForClickedRecipeFromSearch from './components/InsForClickedRecipeFromSearch';
+import MyFavorites from './components/MyFavorites';
 
-import { fetchRandomDishes } from './apiServices/apiServices';
+import { fetchRandomDishes } from './ApiServices/apiServices'
 
-function App() {
+
+export default function App() {
   const [recipes, setRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [favorites, setFavorites] = useState([]);
@@ -44,7 +45,7 @@ function App() {
     <Router>
       <div className="App">
         <h1>
-          <Link to="/">Foodie Delight</Link>
+          <Link to="/"></Link>
         </h1>
         <NavBar />
         <Routes>
@@ -75,10 +76,9 @@ function App() {
             path="/ingredient/:ingredient/:recipeId"
             element={<Recipe />}
           />
+          <Route path="*" element={<div>Page Not Found</div>} />
         </Routes>
       </div>
     </Router>
   );
 }
-
-export default App;

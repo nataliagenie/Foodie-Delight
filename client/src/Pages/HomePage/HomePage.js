@@ -1,20 +1,16 @@
-
 import React, { useState } from 'react';
-import { handleLikeClick } from '../../apiServices/apiServices';
+import { handleLikeClick } from '../../ApiServices/apiServices';
 
 export default function HomePage({ recipes, recipesThatAreLiked }){
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [likedRecipes, setLikedRecipes] = useState({});
 
   const handleTitleClick = (recipe) => {
-    console.log("HOLA")
 
     if (selectedRecipe === recipe) {
       setSelectedRecipe(null);
-      console.log("HOLA")
 
     } else {
-      console.log("HOLA")
 
       setSelectedRecipe(recipe);
     }
@@ -28,7 +24,7 @@ export default function HomePage({ recipes, recipesThatAreLiked }){
 
   return (
     <div className='recipe-list'>
-      {recipes && recipes.map((recipe) => (
+      { recipes.map((recipe) => (
         <div className='recipe-card' key={recipe.title}>
           <img src={recipe.image} alt={recipe.title} />
           <p className='recipe-title' onClick={() => handleTitleClick(recipe)}>
@@ -54,4 +50,5 @@ export default function HomePage({ recipes, recipesThatAreLiked }){
   );
 }
 
+export default ThreeRandomDishes;
 

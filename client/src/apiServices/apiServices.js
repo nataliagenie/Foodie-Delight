@@ -17,6 +17,16 @@ export async function fetchRandomDishes() {
 }
 
 
+export async function fetchLikedDishes() {
+  try {
+    const response = await axios.get('http://localhost:4242/likedDishes');
+    return response.data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+
 export async function handleLikeClick (recipe, setLikedRecipes) {
   try {
     await axios.post(`http://localhost:4242/likedDishes`, recipe);
