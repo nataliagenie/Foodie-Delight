@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchRandomDishes } from '../../apiServices/apiServices'; 
 
 
-function RandomDish() {
+export default function DishGenerator() {
   const [randomRecipe, setRandomRecipe] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -44,4 +44,3 @@ function RandomDish() {
   );
 }
 
-export default RandomDish;

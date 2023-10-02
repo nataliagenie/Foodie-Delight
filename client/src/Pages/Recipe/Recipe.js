@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchRecipeDetails } from '../../apiServices/apiServices';
 
-function InsForClickedRecipeFromSearch() {
+export default function Recipe() {
   const { recipeId } = useParams();
   const [recipeDetails, setRecipeDetails] = useState(null);
 
@@ -38,4 +38,4 @@ function InsForClickedRecipeFromSearch() {
   );
 }
 
-export default InsForClickedRecipeFromSearch;
+

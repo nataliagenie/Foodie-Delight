@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { handleLikeClick } from '../../apiServices/apiServices';
 
-function ThreeRandomDishes({ recipes, recipesThatAreLiked }){
+export default function HomePage({ recipes, recipesThatAreLiked }){
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [likedRecipes, setLikedRecipes] = useState({});
 
@@ -28,7 +28,7 @@ function ThreeRandomDishes({ recipes, recipesThatAreLiked }){
 
   return (
     <div className='recipe-list'>
-      { recipes.map((recipe) => (
+      {recipes && recipes.map((recipe) => (
         <div className='recipe-card' key={recipe.title}>
           <img src={recipe.image} alt={recipe.title} />
           <p className='recipe-title' onClick={() => handleTitleClick(recipe)}>
@@ -54,5 +54,4 @@ function ThreeRandomDishes({ recipes, recipesThatAreLiked }){
   );
 }
 
-export default ThreeRandomDishes;
 

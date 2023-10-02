@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {useParams, Link, Route, Routes} from 'react-router-dom';
 
-import InsForClickedRecipeFromSearch from './InsForClickedRecipeFromSearch';
+import Recipe from '../Recipe/Recipe';
 import { fetchRecipesByIngredient } from '../../apiServices/apiServices';
 
-function IngredientSearchResults ({isLoading}) {
+export default function SearchResults ({isLoading}) {
 
   const [recipes, setRecipes] = useState([]);
   const {ingredient} = useParams();
@@ -46,7 +46,7 @@ function IngredientSearchResults ({isLoading}) {
     <Routes>
         <Route
           path="/ingredient/:ingredient/:recipeId"
-          element={<InsForClickedRecipeFromSearch />}
+          element={<Recipe />}
         />
       </Routes>
       
@@ -55,4 +55,3 @@ function IngredientSearchResults ({isLoading}) {
   );
 }
 
-export default IngredientSearchResults;
