@@ -45,7 +45,7 @@ export default function App() {
     <Router>
       <div className="App">
         <h1>
-          <Link to="/">Foodie Delight</Link>
+          <Link to="/"></Link>
         </h1>
         <Navbar />
         <Routes>

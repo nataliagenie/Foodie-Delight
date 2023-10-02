@@ -2,14 +2,22 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Logo from "../../Images/Logo.jpeg"
+import '../NavBar/NavBar.css'
+
 
 export default function Navbar() {
   const [searchText, setSearchText] = useState('');
+
   
   return (
     <nav className="Navbar">
+       <div className="Header">
+      <Link to="/">
+        <img className="Logo" src={Logo} alt="logo" width={400} height={350} />
+      </Link>
+    </div>
       <div className="button-container">
-
         <Link to={'/random-dish'} className="randomRecipe" reloadDocument >
           Random Recipe
         </Link>

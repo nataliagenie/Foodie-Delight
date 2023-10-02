@@ -4,8 +4,8 @@
 }
 body {
   height: 100vh;
-  font-family: "Sofia", sans-serif;
-  background: linear-gradient(#e66465, #9198e5);
+  font-family: futura;
+  background: white;
   background-attachment: fixed;
   background-size: cover;
   background-repeat: no-repeat;
@@ -34,10 +34,11 @@ h1 a {
 .favoriteRecipe{
   text-decoration: none;
   padding: 10px;
-  background-color: #9186d9;
+  background-color: #3B5980;
+  color:#FAF5E7;
   border-radius: 10px;
   font-size: 1.2rem;
-  font-family: "Sofia", sans-serif;
+  font-family: futura;
   font-weight: bold;
   margin-right: 20px;
 }
@@ -51,10 +52,11 @@ h1 a {
 .search-button {
   text-decoration: none;
   padding: 5px;
-  background-color: #9186d9;
+  background-color: #3B5980;
+  color: #FAF5E7;
   border-radius: 10px;
   font-size: 1.2rem;
-  font-family: "Sofia", sans-serif;
+  font-family: futura;
   font-weight: bold;
   margin-left: 10px;
   margin-right: 20px;
@@ -62,8 +64,8 @@ h1 a {
 /* Add padding to the like button and set the background color */
 .like-button {
   padding: 10px;
-  background-color: #9186d9;
-  color: white;
+  background-color: #3B5980;
+  color: #FAF5E7;
   border: none;
   border-radius: 5px;
   font-size: 1rem;
@@ -74,11 +76,14 @@ h1 a {
 
 /* Define the background color for not liked and liked buttons */
 .like-button.not-liked {
-  background-color: #9186d9; /* Default background color when not liked */
+  background-color: #3B5980; /* Default background color when not liked */
+  color: #FAF5E7;
 }
 
 .like-button.liked {
-  background-color: #be7171; /* Background color when liked */
+  background-color: #FAF5E7; /* Background color when liked */
+  color: #3B5980;
+
 }
 
 /* Ensure the recipe cards are displayed on one line */
@@ -146,7 +151,7 @@ h1 a {
   width: 100%; /* Make the card take up the full width */
   margin: 10px;
   padding: 20px;
-  background-color: linear-gradient(#e66465, #9198e5);
+  background-color: white;
   box-sizing: border-box;
   position: relative;
   display: flex; /* Display as a flex container */
@@ -186,10 +191,10 @@ h1 a {
 }
 
 .left-fav-dish-card button {
-  background-color:  #9198e5;
+  background-color: #3B5980;
   margin-top: 50px;
   padding: 10px;
-  color: white;
+  color: #FAF5E7;
   border: none;
   border-radius: 5px;
   font-size: 1rem;
@@ -199,7 +204,8 @@ h1 a {
 }
 
 .left-fav-dish-card button:hover {
-  background-color: #e66465;
+  background-color: #FAF5E7;
+  color: #3B5980
 }
 /* For the ingredient search*/
 
