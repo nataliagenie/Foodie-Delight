@@ -55,7 +55,7 @@ export async function fetchRecipeDetails(recipeId: number): Promise<RecipeType |
     }
 }
 
-export async function removeFromFavorites(dishId: string): Promise<void> {
+export async function removeFromFavorites(dishId: number): Promise<void> {
     try {
         await axios.delete(`http://localhost:4242/likedDishes/${dishId}`);
     } catch (err) {

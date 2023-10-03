@@ -8,8 +8,8 @@ export interface Step {
   }
   
   export interface RecipeType {
-    id: string;
-    _id:string;
+    id: number;
+    _id:number;
     title: string;
     image: string;
     instructions: string;
@@ -17,7 +17,7 @@ export interface Step {
   }
   
   export interface FavoriteRecipeType {
-    _id: string;
+    _id: number;
     title: string;
     image: string;
     instructions: string;  

@@ -22,16 +22,26 @@ export default function SearchResults({ isLoading }: SearchResultsProps) {
 
   useEffect(() => {
     async function fetchData() {
+      if (!ingredient) { 
+        console.error("Ingredient is not defined.");
+        return;
+      }
+
       try {
-        const data = await fetchRecipesByIngredient(ingredient); 
-        setRecipes(data);
+        const data = await fetchRecipesByIngredient(ingredient);
+        if (data) {
+          setRecipes(data);
+        } else {
+          setRecipes([]);
+        }
       } catch (err) {
-        console.log(err);
+        console.error(err);
+        setRecipes([]);
       }
     }
-
     fetchData();
-  }, [ingredient]);
+  }, [ingredient]);  
+
 
   return (
    

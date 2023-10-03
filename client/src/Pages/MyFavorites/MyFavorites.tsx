@@ -12,20 +12,26 @@ interface MyFavoritesProps {
 export default function MyFavorites({recipesThatAreLiked}: MyFavoritesProps) {
   const [likedDishes, setLikedDishes] = useState<FavoriteRecipeType[]>([]);
 
-
   useEffect(() => {
     async function fetchData() {
       try {
         const dishes = await fetchLikedDishes();
-        setLikedDishes(dishes);
-      } catch (error) {
-        console.error('Error:', error);
+        if (dishes) {
+          setLikedDishes(dishes);
+        } else {
+          setLikedDishes([]);
+        }
+      } catch (err) {
+        console.error(err);
+        setLikedDishes([]);
       }
     }
     fetchData();
-  }, []); 
+  },);  
 
-  const handleRemoveFromFavorites = (dishId: string) => {
+
+  
+  const handleRemoveFromFavorites = (dishId: number) => {
     removeFromFavorites(dishId)
       .then(() => {
         setLikedDishes((prevDishes) => prevDishes.filter((dish) => dish._id !== dishId));

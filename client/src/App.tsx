@@ -18,28 +18,39 @@ const App: FC = () => {
   const [recipes, setRecipes] = useState<RecipeType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [favorites, setFavorites] = useState<string[]>([]); 
-  const [recipesThatAreLiked, setRecipesThatAreLiked] = useState<RecipeType[]>([]);  useEffect(() => {
+  const [recipesThatAreLiked, setRecipesThatAreLiked] = useState<RecipeType[]>([]);  
+  
+  useEffect(() => {
     async function fetchData() {
       try {
         const data = await fetchRandomDishes();
-        setRecipes(data);
+        if (data) {
+          setRecipes(data);
+        } else {
+          setRecipes([]);
+        }
         setIsLoading(false);
       } catch (err) {
         console.error(err);
+        setRecipes([]);
         setIsLoading(false);
       }
     }
     fetchData();
-  }, []);  useEffect(() => {
+  }, []);
+  
+  
+
+  
+  
+  
+  useEffect(() => {
     const item = localStorage.getItem('favorites');
     const savedFavorites = item ? JSON.parse(item) : [];
     setFavorites(savedFavorites);
   }, []);  return (
     <Router>
       <div className="App">
-        <h1>
-          <Link to="/"></Link>
-        </h1>
         <Navbar />
         <Routes>
           <Route

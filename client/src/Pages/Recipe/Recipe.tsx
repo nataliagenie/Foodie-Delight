@@ -14,15 +14,26 @@ export default function Recipe() {
 
   useEffect(() => {
     async function fetchData() {
+      if (!recipeId) { 
+        console.error("Recipe Id is not defined.");
+        return;
+      }
+
       try {
         const data = await fetchRecipeDetails(recipeId); 
-        setRecipeDetails(data);
+        if (data) {
+          setRecipeDetails(data);
+        } else {
+          setRecipeDetails(null);
+        }
       } catch (err) {
-        console.log(err);
+        console.error(err);
+        setRecipeDetails(null);
       }
     }
     fetchData();
-  }, [recipeId]);
+  }, [recipeId]);  
+
 
   return (
     <div className='Recipe'>
