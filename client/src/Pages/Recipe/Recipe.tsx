@@ -9,7 +9,7 @@ import { RecipeType, Step, Instruction } from '../../@types/recipe';
 
 
 export default function Recipe() {
-  const { recipeId } = useParams();
+  const { recipeId } = useParams ();
   const [recipeDetails, setRecipeDetails] = useState<RecipeType | null>(null);
 
   useEffect(() => {
@@ -19,8 +19,9 @@ export default function Recipe() {
         return;
       }
 
+      console.log("hola",recipeId)
       try {
-        const data = await fetchRecipeDetails(recipeId); 
+        const data = await fetchRecipeDetails(Number(recipeId)); 
         if (data) {
           setRecipeDetails(data);
         } else {
