@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { fetchLikedDishes, removeFromFavorites } from '../../ApiServices/apiServices';
-import { FavoriteRecipeType } from '../../@types/recipe';
+import { RecipeType } from '../../@types/recipe';
+import '../MyFavorites/MyFavorites.css'
+ 
 
 
 interface MyFavoritesProps {
-  recipesThatAreLiked: FavoriteRecipeType[];
+  recipesThatAreLiked: RecipeType[];
 }
 
-
-
 export default function MyFavorites({recipesThatAreLiked}: MyFavoritesProps) {
-  const [likedDishes, setLikedDishes] = useState<FavoriteRecipeType[]>([]);
+  const [likedDishes, setLikedDishes] = useState<RecipeType[]>([]);
+
+  const navigate = useNavigate();
+  const handleRecipeClick = (dishId: number) => {
+    navigate(`/my-favorites/${dishId}`);
+  };
+
 
   useEffect(() => {
     async function fetchData() {
@@ -27,10 +34,10 @@ export default function MyFavorites({recipesThatAreLiked}: MyFavoritesProps) {
       }
     }
     fetchData();
-  },);  
+  },[]);  
+    
 
 
-  
   const handleRemoveFromFavorites = (dishId: number) => {
     removeFromFavorites(dishId)
       .then(() => {
@@ -47,15 +54,13 @@ export default function MyFavorites({recipesThatAreLiked}: MyFavoritesProps) {
       <div className='fav-dish-list'>
         {likedDishes && likedDishes.map((dish) => (
           <div className='fav-dish-card' key={dish._id}>
-            <div className='left-fav-dish-card'>
-              <h2>{dish.title}</h2>
-              <img src={dish.image} alt={dish.title} />
-              <button onClick={() => handleRemoveFromFavorites(dish._id)}>Remove from My Favorites</button>
-            </div>
-            <div className='right-fav-dish-card'>
-              <p><strong>Instructions:</strong> {dish.instructions}</p>
-            </div>
+          <div className='Recipe' onClick={() => handleRecipeClick(dish._id)}>
+            <h2>{dish.title}</h2>
+            <img className='img' src={dish.image} alt={dish.title} />
+            <br />
+            <button onClick={() => handleRemoveFromFavorites(dish._id)}>Remove from My Favorites</button>
           </div>
+        </div>
         ))}
       </div>
     </div>

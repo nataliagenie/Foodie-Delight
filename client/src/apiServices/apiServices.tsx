@@ -1,21 +1,22 @@
 import axios from 'axios';
 import { RecipeType } from '../@types/recipe';
 
-const apiKey = "21f51898cd7a4d489d4f9c3aac1b93fc";
+const apiKey = "8b8a651883de41c29977607460e2be7b";
 
-export async function fetchRandomDishes(): Promise<RecipeType[] | null> {
+export async function fetchRandomDish(): Promise<RecipeType | null> {
     try {
-        const response = await axios.get('http://localhost:4242/random-dishes');
+        const response = await axios.get('http://localhost:4242/random-dish'); 
         return response.data;
     } catch (err) {
         console.error(err);
         return null;
     }
-}
+  }
+  
 
 export async function fetchLikedDishes(): Promise<RecipeType[] | undefined> {
     try {
-        const response = await axios.get('http://localhost:4242/likedDishes');
+        const response = await axios.get('http://localhost:4242/my-favorites');
         return response.data;
     } catch (err) {
         console.error(err);
@@ -24,7 +25,7 @@ export async function fetchLikedDishes(): Promise<RecipeType[] | undefined> {
 
 export async function handleLikeClick(recipe: RecipeType, setLikedRecipes: React.Dispatch<React.SetStateAction<{[key: string]: boolean}>>): Promise<void> {
     try {
-        await axios.post(`http://localhost:4242/likedDishes`, recipe);
+        await axios.post(`http://localhost:4242/my-favorites`, recipe);
         setLikedRecipes(prevLikedRecipes => ({
             ...prevLikedRecipes,
             [recipe.title]: !prevLikedRecipes[recipe.title],
@@ -45,7 +46,7 @@ export async function fetchRecipesByIngredient(ingredient: string): Promise<Reci
     }
 }
 
-export async function fetchRecipeDetails(recipeId: number): Promise<RecipeType | undefined> {
+export async function fetchRecipeDetails(recipeId: number | string ): Promise<RecipeType | undefined> {
     try {
         const apiUrl = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`;
         const response = await axios.get(apiUrl);
@@ -57,7 +58,7 @@ export async function fetchRecipeDetails(recipeId: number): Promise<RecipeType |
 
 export async function removeFromFavorites(dishId: number): Promise<void> {
     try {
-        await axios.delete(`http://localhost:4242/likedDishes/${dishId}`);
+        await axios.delete(`http://localhost:4242/my-favorites/${dishId}`);
     } catch (err) {
         console.error(err);
     }

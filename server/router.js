@@ -3,9 +3,9 @@
 const router = require('express').Router();
 const dish = require('./controllers/dishController');
 
-router.get('/random-dishes', dish.getThreeRandomDishes);
-router.post('/likedDishes', dish.saveLikedDish); 
-router.get('/likedDishes', dish.getLikedDishes);
-router.delete('/likedDishes/:dishId', dish.deleteLikedDish);
+router.get('/random-dish', dish.getRandomDish);
+router.post('/my-favorites', dish.saveLikedDish); 
+router.get('/my-favorites', dish.getLikedDishes);
+router.delete('/my-favorites/:dishId', dish.deleteLikedDish);
 
 module.exports = router;

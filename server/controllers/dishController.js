@@ -5,45 +5,34 @@
 const Dish = require('../models/Dish');
 const axios = require('axios');
 const cheerio = require('cheerio');
-const apiKey = "21f51898cd7a4d489d4f9c3aac1b93fc";
+// const apiKey = "21f51898cd7a4d489d4f9c3aac1b93fc";
+const apiKey = "8b8a651883de41c29977607460e2be7b";
 
-
-//this is for my main page, it should be showing 3 random dishes
-exports.getThreeRandomDishes = async (req, res) => {
+exports.getRandomDish = async (req, res) => {
   try {
-    const numberOfRecipes = 3;
-    const recipePromises = [];
+    const response = await axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}`);
+    const randomRecipe = response.data.recipes[0];
+    const {title, image, summary, instructions, analyzedInstructions, extendedIngredients} = randomRecipe;
+    const $ = cheerio.load(summary);
+    const plainTextSummary = $.text();
+    const ins = cheerio.load(instructions);
+    const plainTextInstructions = ins.text();
 
-    for ( let i =0; i < numberOfRecipes; i++) {
-      recipePromises.push(
-        axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}`)
-      )
-    }
-
-    const responses = await Promise.all(recipePromises);
-    const randomDishes = [];
-
-    responses.forEach((response) => {
-      const randomRecipe = response.data.recipes[0];
-      const {title, image, summary, instructions} = randomRecipe;
-      const $ = cheerio.load(summary);
-      const plainTextSummary = $.text();
-      const ins = cheerio.load(instructions);
-      const plainTextInstructions = ins.text();
-
-      randomDishes.push({
-        title,
-        image,
-        summary: plainTextSummary,
-        instructions: plainTextInstructions,
-      })
-    });
-    res.status(200).json(randomDishes);
+    const dish = {
+      title,
+      image,
+      summary: plainTextSummary,
+      instructions: plainTextInstructions,
+      analyzedInstructions,
+      extendedIngredients
+    };
+    res.status(200).json(dish);
   } catch (err) {
     console.log('Error', err);
     res.status(500).send('Internal Server Error');
   }
 }
+
 
 exports.saveLikedDish = async (req, res) => {
   try {

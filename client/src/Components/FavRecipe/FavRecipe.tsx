@@ -1,23 +1,25 @@
+
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchRecipeDetails } from '../../ApiServices/apiServices';
+import { fetchRecipeDetails} from '../../ApiServices/apiServices'
 import { RecipeType, Step, Instruction } from '../../@types/recipe';
 
 
 
-export default function Recipe() {
-  const { recipeId } = useParams ();
+export default function FavRecipe() {
+  const { dishId } = useParams ();
   const [recipeDetails, setRecipeDetails] = useState<RecipeType | null>(null);
 
   useEffect(() => {
     async function fetchData() {
-      if (!recipeId) { 
-        console.error("Recipe Id is not defined.");
+      if (!dishId) { 
+        console.error("Dish Id is not defined.");
         return;
       }
 
       try {
-        const data = await fetchRecipeDetails(Number(recipeId)); 
+        const data = await fetchRecipeDetails(dishId); 
+        console.log(dishId)
         if (data) {
           setRecipeDetails(data);
         } else {
@@ -29,7 +31,7 @@ export default function Recipe() {
       }
     }
     fetchData();
-  }, [recipeId]);  
+  }, [dishId]);  
 
 
   return (
