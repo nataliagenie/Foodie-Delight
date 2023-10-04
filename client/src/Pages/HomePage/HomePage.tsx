@@ -20,7 +20,7 @@ const HomePage: FC<HomePageProps> = ({ recipes, recipesThatAreLiked }) => {
     handleLikeClick(recipe, setLikedRecipes);
   };   return (
     <div className='recipe-list'>
-      {recipes && recipes.map((recipe) => (
+      {/* {recipes && recipes.map((recipe) => (
         <div className='recipe-card' key={recipe.title}>
           <img src={recipe.image} alt={recipe.title} />
           <p className='recipe-title' onClick={() => handleTitleClick(recipe)}>
@@ -52,7 +52,9 @@ const HomePage: FC<HomePageProps> = ({ recipes, recipesThatAreLiked }) => {
         </div>
       ))}
     </div>
-  );
+  ); */}
+  </div>
+ )
 }
 export default HomePage;
 
