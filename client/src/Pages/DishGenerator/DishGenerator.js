@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchRandomDishes } from '../../ApiServices/apiServices'
+import { fetchRandomDishes } from '../../apiServices/apiServices'
 
 
 export default function DishGenerator() {

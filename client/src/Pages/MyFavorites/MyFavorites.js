@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchLikedDishes, removeFromFavorites } from '../../ApiServices/apiServices';
+import { fetchLikedDishes, removeFromFavorites } from '../../apiServices/apiServices';
 
 export default function MyFavorites() {
   const [likedDishes, setLikedDishes] = useState([]);

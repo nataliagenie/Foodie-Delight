@@ -1,6 +1,6 @@
 'use strict';
 
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const dishSchema = new mongoose.Schema({
   title: String,
@@ -15,5 +15,5 @@ const dishSchema = new mongoose.Schema({
 
 const Dish = mongoose.model('Dish', dishSchema);
 
-module.exports = Dish;
+export default Dish;
 

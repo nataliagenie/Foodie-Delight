@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { handleLikeClick } from '../../ApiServices/apiServices';
+import { handleLikeClick } from '../../apiServices/apiServices';
 
 export default function HomePage({ recipes, recipesThatAreLiked }){
   const [selectedRecipe, setSelectedRecipe] = useState(null);

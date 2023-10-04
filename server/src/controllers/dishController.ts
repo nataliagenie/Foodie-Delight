@@ -1,51 +1,56 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/*global process*/
 'use strict';
-// require('dotenv').config();
-// import 'dotenv/config'
-
-const Dish = require('../models/Dish');
-const axios = require('axios');
-const cheerio = require('cheerio');
-const apiKey = "21f51898cd7a4d489d4f9c3aac1b93fc";
+import Dish from '../models/Dish';
+import axios from 'axios';
+import cheerio from 'cheerio';
+import { Request, Response } from "express";
+const apiKey = process.env.API_KEY;
 
 
 //this is for my main page, it should be showing 3 random dishes
-exports.getThreeRandomDishes = async (req, res) => {
+
+const getRandomDish = async (): Promise <any> => {
+  const response = await axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}`);
+  const randomRecipe = response.data.recipes[0];
+  return randomRecipe;
+};
+
+
+const extractPlainText = (htmlText: string) => {
+  const plainText = cheerio.load(htmlText);
+  //@ts-ignore
+  return plainText.text();
+};
+
+export const getThreeRandomDishes = async (req: Request, res: Response ) => {
   try {
     const numberOfRecipes = 3;
-    const recipePromises = [];
+    const recipePromises:any = [];
 
-    for ( let i =0; i < numberOfRecipes; i++) {
-      recipePromises.push(
-        axios.get(`https://api.spoonacular.com/recipes/random?apiKey=${apiKey}`)
-      )
+    for (let i = 0; i < numberOfRecipes; i++) {
+      recipePromises.push(getRandomDish() as Promise <any>);
     }
 
     const responses = await Promise.all(recipePromises);
-    const randomDishes = [];
-
-    responses.forEach((response) => {
-      const randomRecipe = response.data.recipes[0];
-      const {title, image, summary, instructions} = randomRecipe;
-      const $ = cheerio.load(summary);
-      const plainTextSummary = $.text();
-      const ins = cheerio.load(instructions);
-      const plainTextInstructions = ins.text();
-
-      randomDishes.push({
+    const randomDishes = responses.map((randomRecipe) => {
+      const { title, image, summary, instructions } = randomRecipe;
+      return {
         title,
         image,
-        summary: plainTextSummary,
-        instructions: plainTextInstructions,
-      })
+        summary: extractPlainText(summary),
+        instructions: extractPlainText(instructions),
+      };
     });
+
     res.status(200).json(randomDishes);
   } catch (err) {
     console.log('Error', err);
     res.status(500).send('Internal Server Error');
   }
-}
+};
 
-exports.saveLikedDish = async (req, res) => {
+export const saveLikedDish = async (req: Request, res: Response) => {
   try {
     const dishData = req.body;
 
@@ -69,7 +74,7 @@ exports.saveLikedDish = async (req, res) => {
 
 
 
-exports.getLikedDishes = async (req, res) => {
+export const getLikedDishes = async (req: Request, res: Response) => {
   try {
  
     const likedDishes = await Dish.find({ liked: true });
@@ -83,9 +88,9 @@ exports.getLikedDishes = async (req, res) => {
     console.error('Error:', err);
     res.status(500).send('Internal Server Error');
   }
+  
 }
-
-exports.deleteLikedDish = async (req, res) => {
+ export const deleteLikedDish = async (req: Request, res: Response) => {
   try {
     const dishId = req.params.dishId;
 
@@ -101,3 +106,4 @@ exports.deleteLikedDish = async (req, res) => {
     res.status(500).send('Not able to delete the dish');
   }
 }
+

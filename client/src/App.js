@@ -10,7 +10,7 @@ import MyFavorites from './Pages/MyFavorites/MyFavorites';
 import SearchResults from './Pages/SearchResults/SearchResults';
 import DishGenerator from './Pages/DishGenerator/DishGenerator';
 
-import { fetchRandomDishes } from './ApiServices/apiServices'
+import { fetchRandomDishes } from './apiServices/apiServices'
 
 
 export default function App() {

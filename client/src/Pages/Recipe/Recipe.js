@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchRecipeDetails } from '../../ApiServices/apiServices';
+import { fetchRecipeDetails } from '../../apiServices/apiServices';
 
 export default function Recipe() {
   const { recipeId } = useParams();
