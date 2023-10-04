@@ -10,10 +10,6 @@ import { fetchRandomDishes } from './ApiServices/apiServices'
 import HomePage from './Pages/HomePage/HomePage'; 
 import { RecipeType, Instruction } from './@types/recipe';
 
-
-
-
-
 const App: FC = () => {
   const [recipes, setRecipes] = useState<RecipeType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -39,16 +35,13 @@ const App: FC = () => {
     fetchData();
   }, []);
   
-  
-
-  
-  
-  
   useEffect(() => {
     const item = localStorage.getItem('favorites');
     const savedFavorites = item ? JSON.parse(item) : [];
     setFavorites(savedFavorites);
-  }, []);  return (
+  }, []);  
+  
+  return (
     <Router>
       <div className="App">
         <Navbar />
@@ -85,4 +78,5 @@ const App: FC = () => {
     </Router>
   );
 }
+
 export default App;

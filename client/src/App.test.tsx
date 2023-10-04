@@ -1,37 +1,37 @@
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
 import App from './App';
+import axios from 'axios';
 
-/**
- * @jest-environment jsdom
- */
+import { mockRandomRecipes } from '../__mocks__/mockData';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/foodie/i);
-  expect(linkElement).toBeInTheDocument();
+jest.mock('axios');
+(axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({ data: mockRandomRecipes });
+
+describe("App Test", () => {
+  test('shows loading state initially and then renders data render navigation bar', async () => {
+    render(<App />);
+    
+    const loadingElement = screen.getByText(/Loading.../i);
+    expect(loadingElement).toBeInTheDocument();
+
+    await waitForElementToBeRemoved(() => screen.queryByText(/Loading.../i));
+
+    expect(await screen.findByText(mockRandomRecipes[0].title)).toBeInTheDocument();
+
+    const navbarElement = screen.getByRole('navigation');
+    expect(navbarElement).toBeInTheDocument();
+  });
+
+  // test('always renders the Navbar', () => {
+  //   render(<App />);
+  //   const navbarElement = screen.getByRole('navigation');
+  //   expect(navbarElement).toBeInTheDocument();
+  // });
+  
+  
+
+
+
 });
-
-
-
-
-
-// test -Method (3 arguments) 
- //1- (1. test name) (2. function (expectation to test) to test) (3.timeout (optional) how long to wait, beofre aborting test. default: 5s)
-// 2- ("test name")
-//  react test library -> render and screen
-// 3 -  func -> contain expectation to test   method ->  render()
-//  screen  ->Object that contain methods to query (getbytext(argument -> regex)) virtual dom
-// 4- toBeInTheDocument() -> matcher function
-
-
-
-// react test library -> render && scree
-// Method from jest that create react app globally provides -> test expect
-
-
-// describe -> NO es integration test
-
-// 3 tipos de consultas -> 1. get     2. find    3. query
-// 

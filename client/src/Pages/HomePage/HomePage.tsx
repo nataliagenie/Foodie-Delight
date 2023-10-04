@@ -10,22 +10,28 @@ interface HomePageProps {
 const HomePage: FC<HomePageProps> = ({ recipes, recipesThatAreLiked }) => {
   const [selectedRecipe, setSelectedRecipe] = useState<RecipeType | null>(null);
   const [likedRecipes, setLikedRecipes] = useState<Record<string, boolean>>({}); 
-   const handleTitleClick = (recipe: RecipeType) => {
+
+  const handleTitleClick = (recipe: RecipeType) => {
     if (selectedRecipe === recipe) {
       setSelectedRecipe(null);
     } else {
       setSelectedRecipe(recipe);
     }
-  };  const handleLikeClickWrapper = (recipe: RecipeType) => {
+  };
+  
+  const handleLikeClickWrapper = (recipe: RecipeType) => {
     handleLikeClick(recipe, setLikedRecipes);
-  };   return (
+  };   
+  
+  return (
     <div className='recipe-list'>
-      {/* {recipes && recipes.map((recipe) => (
+      {recipes && recipes.map((recipe) => (
         <div className='recipe-card' key={recipe.title}>
           <img src={recipe.image} alt={recipe.title} />
           <p className='recipe-title' onClick={() => handleTitleClick(recipe)}>
             {recipe.title}
           </p>
+          
           <button
             className={`like-button ${
               likedRecipes[recipe.title] ? 'liked' : 'not-liked'
@@ -52,10 +58,7 @@ const HomePage: FC<HomePageProps> = ({ recipes, recipesThatAreLiked }) => {
         </div>
       ))}
     </div>
-  ); */}
-  </div>
- )
-}
-export default HomePage;
+  )
+};
 
- {/* <p>{recipe.analyzedInstructions}</p> */}
+export default HomePage;
