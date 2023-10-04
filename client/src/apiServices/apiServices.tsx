@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { RecipeType } from '../@types/recipe';
+import { RecipeType, FavoriteRecipeType  } from '../@types/recipe';
 
 const apiKey = "8b8a651883de41c29977607460e2be7b";
 
@@ -17,6 +17,15 @@ export async function fetchRandomDish(): Promise<RecipeType | null> {
 export async function fetchLikedDishes(): Promise<RecipeType[] | undefined> {
     try {
         const response = await axios.get('http://localhost:4242/my-favorites');
+        return response.data;
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+export async function fetchLikedDishRecipe(dishId: string): Promise<FavoriteRecipeType | undefined> {
+    try {
+        const response = await axios.get(`http://localhost:4242/my-favorites/${dishId}`);
         return response.data;
     } catch (err) {
         console.error(err);
@@ -46,7 +55,7 @@ export async function fetchRecipesByIngredient(ingredient: string): Promise<Reci
     }
 }
 
-export async function fetchRecipeDetails(recipeId: number | string ): Promise<RecipeType | undefined> {
+export async function fetchRecipeDetails(recipeId: number ): Promise<RecipeType | undefined> {
     try {
         const apiUrl = `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`;
         const response = await axios.get(apiUrl);

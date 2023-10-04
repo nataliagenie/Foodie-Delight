@@ -1,14 +1,14 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchRecipeDetails} from '../../ApiServices/apiServices'
-import { RecipeType, Step, Instruction } from '../../@types/recipe';
+import { fetchLikedDishRecipe } from '../../apiServices/apiServices'
+import { FavoriteRecipeType } from '../../@types/recipe';
 
 
 
 export default function FavRecipe() {
   const { dishId } = useParams ();
-  const [recipeDetails, setRecipeDetails] = useState<RecipeType | null>(null);
+  const [recipeDetails, setRecipeDetails] = useState<FavoriteRecipeType | null>(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -18,8 +18,8 @@ export default function FavRecipe() {
       }
 
       try {
-        const data = await fetchRecipeDetails(dishId); 
-        console.log(dishId)
+        const data = await fetchLikedDishRecipe(dishId); 
+        console.log(data)
         if (data) {
           setRecipeDetails(data);
         } else {
@@ -40,6 +40,16 @@ export default function FavRecipe() {
         <>
           <img src={recipeDetails.image} alt={recipeDetails.title} />
           <h1>{recipeDetails.title}</h1>
+          <div className='ingredients'>
+              <h3>Ingredients</h3>
+              <ul>
+                {recipeDetails.extendedIngredients.map((ingredient, index) => (
+                  <li key={index}>
+                    {ingredient.original}
+                  </li>
+                ))}
+              </ul>
+            </div>
           <h2>Instructions:</h2>
           <div className="recipe-steps">
             {recipeDetails.analyzedInstructions[0]?.steps.map((step, index) => (

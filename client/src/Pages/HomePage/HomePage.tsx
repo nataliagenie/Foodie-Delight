@@ -1,7 +1,7 @@
 
 
  import React, { useEffect, useState, FC } from 'react';
- import { handleLikeClick } from '../../ApiServices/apiServices';
+ import { handleLikeClick } from '../../apiServices/apiServices';
  import { RecipeType, HomePageProps } from '../../@types/recipe';
  import '../HomePage/HomePage.css'
  

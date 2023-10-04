@@ -7,7 +7,8 @@ const dishSchema = new mongoose.Schema({
   image: String,
   summary: String,
   instructions: String,
-  // analyzedInstructions:[],
+  analyzedInstructions:[],
+  extendedIngredients:[],
   liked: {
     type: Boolean,
     default: false // Initial liked status is set to false

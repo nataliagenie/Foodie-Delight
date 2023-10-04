@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchLikedDishes, removeFromFavorites } from '../../ApiServices/apiServices';
-import { RecipeType } from '../../@types/recipe';
+import { fetchLikedDishes, removeFromFavorites } from '../../apiServices/apiServices';
+import { FavoriteRecipeType } from '../../@types/recipe';
 import '../MyFavorites/MyFavorites.css'
  
 
 
 interface MyFavoritesProps {
-  recipesThatAreLiked: RecipeType[];
+  recipesThatAreLiked: FavoriteRecipeType[];
 }
 
 export default function MyFavorites({recipesThatAreLiked}: MyFavoritesProps) {
-  const [likedDishes, setLikedDishes] = useState<RecipeType[]>([]);
+  const [likedDishes, setLikedDishes] = useState<FavoriteRecipeType[]>([]);
 
   const navigate = useNavigate();
   const handleRecipeClick = (dishId: number) => {

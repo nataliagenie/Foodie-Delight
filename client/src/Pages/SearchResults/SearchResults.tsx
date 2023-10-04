@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useParams, Link, Route, Routes} from 'react-router-dom';
 
-import { fetchRecipesByIngredient } from '../../ApiServices/apiServices';
+import { fetchRecipesByIngredient } from '../../apiServices/apiServices';
 import Recipe from '../Recipe/Recipe';
 
 import { RecipeType } from '../../@types/recipe';

@@ -74,6 +74,22 @@ exports.getLikedDishes = async (req, res) => {
   }
 }
 
+exports.getLikedDishById = async (req, res) => {
+  try {
+    const dishId = req.params.dishId;
+    const dish = await Dish.findById(dishId);
+
+    if (!dish) {
+      return res.status(404).json({ message: 'Dish not found' });
+    }
+
+    res.status(200).json(dish);
+  } catch (err) {
+    console.error('Error:', err);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
 exports.deleteLikedDish = async (req, res) => {
   try {
     const dishId = req.params.dishId;
@@ -90,3 +106,4 @@ exports.deleteLikedDish = async (req, res) => {
     res.status(500).send('Not able to delete the dish');
   }
 }
+

@@ -7,6 +7,16 @@ export interface RecipeType {
     analyzedInstructions: Instruction[];
     extendedIngredients: Ingredient[];
   }
+
+export interface FavoriteRecipeType {
+    id: number;
+    _id:number;
+    title: string;
+    image: string;
+    instructions: string;
+    analyzedInstructions: Instruction[];
+    extendedIngredients: Ingredient[];
+  }
 export interface Ingredient {
   original: string;
 } 
