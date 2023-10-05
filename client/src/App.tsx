@@ -39,7 +39,9 @@ useEffect(() => {
     const item = localStorage.getItem('favorites');
     const savedFavorites = item ? JSON.parse(item) : [];
     setFavorites(savedFavorites);
-  }, []);  return (
+  }, []);  
+  
+  return (
     <Router>
       <div className="App">
         <Navbar />
@@ -80,4 +82,5 @@ useEffect(() => {
     </Router>
   );
 }
+
 export default App;
