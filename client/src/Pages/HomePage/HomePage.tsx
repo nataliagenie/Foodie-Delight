@@ -2,7 +2,7 @@ import React, { useEffect, useState, FC } from "react";
 import { handleLikeClick } from "../../apiServices/apiServices";
 import { RecipeType, HomePageProps } from "../../@types/recipe";
 import "../HomePage/HomePage.css";
-import HeaderImage from "../../Images/cooking.jpeg";
+import HeaderImage from "../../Images/Dish3.png";
 
 const HomePage: FC<HomePageProps> = ({ recipes, recipesThatAreLiked }) => {
   const [selectedRecipe, setSelectedRecipe] = useState<RecipeType | null>(null);

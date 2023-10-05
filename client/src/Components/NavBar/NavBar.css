@@ -2,11 +2,10 @@ nav {
     z-index: 2;
     position: relative;
     height: 100px;
-    background-color: #1d6eb8;
-    box-shadow: 0px 2px 0px black;
+    background-color: #FAF5E7;
+    /* box-shadow: 0px 2px 0px black; */
     display: grid;
 }
-
 .nav-container {
     display: grid;
     grid-template-columns: 25% 75%;
@@ -16,12 +15,12 @@ nav {
 
 .nav-container a {
     text-decoration: none;
-    color: rgb(219, 219, 219)
+    color: rgb(10, 10, 10);
 }
 
 .nav-container a:hover {
     text-decoration: none;
-    color: rgb(143, 190, 233)
+    color: rgb(30, 47, 62)
 }
 
 
@@ -34,37 +33,37 @@ nav {
     /* background-color: white; */
     justify-content: flex-start;
 }
-
-.nav-menu-wrapper {
+.nav-menu-wrapper{
     /* grid-column: 30%; */
-    display: flex;
-    /* justify-content: space-between; */
-    list-style: none;
-    margin: 0;
-    padding: 20px;
-    justify-content: right;
+        display: flex;
+        /* justify-content: space-between; */
+        list-style: none;
+        margin: 0;
+        padding: 20px;
+        justify-content: right;
 }
-
-.nav-menu {
+.nav-menu{
     /* grid-column: col-start 7 / span 6; */
-    display: flex;
-    justify-content: flex-end;
-    gap: 35px;
-    list-style: none;
-    margin: 0;
-    padding: 20px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 35px;
+        list-style: none;
+        margin: 0;
+        padding: 20px;
 }
-
 .nav-menu div {
     margin: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 }
 
-.nav-logo {
+.nav-logo{
     display: flex;
+    justify-content: center;
+        align-items: center;
 }
+
 
 
 .input-search {
@@ -80,9 +79,14 @@ nav {
     margin-right: 5px;
 }
 
+.nav-logo img {
+    width: 63px;
+    transition: transform 1s ease-in-out;
+}
 
-
-
+.nav-logo:hover img {
+    transform: scaleX(-1);
+}
 
 
 

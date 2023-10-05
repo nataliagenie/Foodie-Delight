@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   height: 100vh;
   font-family: futura;
@@ -11,33 +12,39 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  transition:  0.5s ease-in-out; 
+  transition: 0.5s ease-in-out;
   text-align: center;
+  min-height: 100vh;
+  /* Ensure the body takes up at least the full viewport height */
 }
 
 h1 {
   font-size: 3rem;
   margin-top: 20px;
-  margin-bottom: 50px; 
-}
-h1 a {
-  text-decoration: none; /* Remove underline from the link within the h1 */
+  margin-bottom: 50px;
 }
 
-.wrapper{
-  display: grid;
-  
+h1 a {
+  text-decoration: none;
+  /* Remove underline from the link within the h1 */
 }
+
+.wrapper {
+  display: grid;
+
+}
+
 .header-container {
   display: grid;
-  
+
 }
-header{
-  background-color: #ece6ae;
-  
+
+header {
+  background-color: #3B5980;
+  height: 200px;
   grid-template-columns: 60% 40%;
-  
 }
+
 /* .randomRecipe,
 .favoriteRecipe{
   text-decoration: none;
@@ -84,12 +91,14 @@ header{
 
 /* Define the background color for not liked and liked buttons */
 .like-button.not-liked {
-  background-color: #3B5980; /* Default background color when not liked */
+  background-color: #3B5980;
+  /* Default background color when not liked */
   color: #FAF5E7;
 }
 
 .like-button.liked {
-  background-color: #FAF5E7; /* Background color when liked */
+  background-color: #FAF5E7;
+  /* Background color when liked */
   color: #3B5980;
 
 }
@@ -98,14 +107,19 @@ header{
 .recipe-list {
   margin-top: 70px;
   display: flex;
-  flex-wrap: wrap; /* Enable wrapping if needed */
-  justify-content: flex-start; /* Start from the left */
-  gap: 20px; /* Add some space between recipe cards */
-  overflow-x: auto; /* Enable horizontal scrolling if necessary */
+  flex-wrap: wrap;
+  /* Enable wrapping if needed */
+  justify-content: flex-start;
+  /* Start from the left */
+  gap: 20px;
+  /* Add some space between recipe cards */
+  overflow-x: auto;
+  /* Enable horizontal scrolling if necessary */
 }
 
 .recipe-card {
-  flex: 0 0 calc(33.3333% - 20px); /* Adjust the width to fit 3 cards in a row */
+  flex: 0 0 calc(33.3333% - 20px);
+  /* Adjust the width to fit 3 cards in a row */
   margin-bottom: 20px;
   padding: 20px;
   text-align: center;
@@ -125,15 +139,18 @@ header{
 }
 
 .recipe-card h2 {
-  display: none; /* Hide the title by default */
+  display: none;
+  /* Hide the title by default */
 }
 
 .recipe-card:not(.selected) h2 {
-  display: block; /* Display the title when not selected */
+  display: block;
+  /* Display the title when not selected */
 }
 
 .recipe-card button {
-  margin-top: 10px; /* Add space between title and button */
+  margin-top: 10px;
+  /* Add space between title and button */
 }
 
 /* For My-Favorirtes */
@@ -156,46 +173,60 @@ header{
 }
 
 .fav-dish-card {
-  width: 100%; /* Make the card take up the full width */
+  width: 100%;
+  /* Make the card take up the full width */
   margin: 10px;
   padding: 20px;
   background-color: white;
   box-sizing: border-box;
   position: relative;
-  display: flex; /* Display as a flex container */
-  flex-direction: row; /* Arrange items horizontally */
-  align-items: flex-start; /* Align items to the start (top) of the card */
-  justify-content: space-between; /* Add space between left and right cards */
+  display: flex;
+  /* Display as a flex container */
+  flex-direction: row;
+  /* Arrange items horizontally */
+  align-items: flex-start;
+  /* Align items to the start (top) of the card */
+  justify-content: space-between;
+  /* Add space between left and right cards */
 }
 
 .left-fav-dish-card {
-  flex: 1; /* Allow left card to grow and take available space */
+  flex: 1;
+  /* Allow left card to grow and take available space */
   display: flex;
-  flex-direction: column; /* Arrange items in a column */
-  align-items: center; 
-  justify-content: flex-start; /* Align items to the start (top) of the card */
+  flex-direction: column;
+  /* Arrange items in a column */
+  align-items: center;
+  justify-content: flex-start;
+  /* Align items to the start (top) of the card */
 }
 
 .right-fav-dish-card {
   font-size: 1.2rem;
   margin-top: 59px;
-  flex: 1; /* Allow right card to grow and take available space */
+  flex: 1;
+  /* Allow right card to grow and take available space */
   display: flex;
-  flex-direction: column; /* Arrange items in a column */
-  align-items: flex-start; /* Align items to the start (left) of the card */
-  justify-content: flex-start; /* Align items to the start (top) of the card */
+  flex-direction: column;
+  /* Arrange items in a column */
+  align-items: flex-start;
+  /* Align items to the start (left) of the card */
+  justify-content: flex-start;
+  /* Align items to the start (top) of the card */
 }
 
 .left-fav-dish-card h2 {
   font-size: 1.5rem;
-  margin-bottom : 20px; /* Reset margin to remove default spacing */
+  margin-bottom: 20px;
+  /* Reset margin to remove default spacing */
 }
 
 .left-fav-dish-card img {
-  max-width: 500px; /* Adjust the image width */
+  max-width: 500px;
+  /* Adjust the image width */
   height: auto;
   border-radius: 5px;
-  margin: 10px 0; 
+  margin: 10px 0;
 }
 
 .left-fav-dish-card button {
@@ -215,6 +246,7 @@ header{
   background-color: #FAF5E7;
   color: #3B5980
 }
+
 /* For the ingredient search*/
 
 .search-results {
@@ -229,14 +261,19 @@ header{
 
 .recipe-list-from-search {
   display: flex;
-  flex-wrap: wrap; /* Enable wrapping to create lines */
-  justify-content: flex-start; /* Start from the left */
-  gap: 20px; /* Add some space between recipe cards */
-  overflow-x: auto; /* Enable horizontal scrolling if necessary */
+  flex-wrap: wrap;
+  /* Enable wrapping to create lines */
+  justify-content: flex-start;
+  /* Start from the left */
+  gap: 20px;
+  /* Add some space between recipe cards */
+  overflow-x: auto;
+  /* Enable horizontal scrolling if necessary */
 }
 
 .recipe-card-from.search {
-  flex: 0 0 calc(20% - 20px); /* Adjust the width to fit 5 cards in a line */
+  flex: 0 0 calc(20% - 20px);
+  /* Adjust the width to fit 5 cards in a line */
   margin-bottom: 20px;
   padding: 20px;
   text-align: center;
@@ -253,25 +290,38 @@ header{
 .recipe-card-from.search .recipe-title-link {
   font-size: 1.5rem;
   margin: 10px 0;
-  display: block; /* Display titles underneath the images */
+  display: block;
+  /* Display titles underneath the images */
 }
 
 .recipe-card-from.search h2 {
-  display: none; /* Hide the title by default */
+  display: none;
+  /* Hide the title by default */
 }
 
 .recipe-card-from.search:not(.selected) h2 {
-  display: block; /* Display the title when not selected */
+  display: block;
+  /* Display the title when not selected */
 }
 
 .recipe-card-from.search button {
-  margin-top: 10px; /* Add space between title and button */
+  margin-top: 10px;
+  /* Add space between title and button */
 }
 
 .InsClickedRecipe {
   margin-top: 30px;
-  
+
 }
+
 .recipe-steps {
   font-size: 1.3rem;
+}
+
+.App {
+  display: grid;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 100%;
+  min-height: 100vh
 }
