@@ -1,43 +1,51 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import '../NavBar/NavBar.css'
-import Logo from '../../Images/Logo.jpeg'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import "../NavBar/NavBar.css";
 
 function Navbar() {
-    const [searchText, setSearchText] = useState<string>('');
+  const [searchText, setSearchText] = useState<string>("");
 
-    return (
-        <nav className="Navbar">
-            <div className="Header">
-                <Link to="/">
-                    <img className="Logo" src={Logo} alt="logo" width={400} height={350} />
-                </Link>
+  return (
+    <nav className="wrapper">
+      <div className="nav-container grid-2-col">
+        <div className="nav-inner-wrapper">
+          <div className="nav-logo">
+            <span>Foodie Delight</span>
+          </div>
+        </div>
+        <div className="nav-menu-wrapper">
+          <div className="nav-menu">
+            <div className="search-container">
+              <input
+                className="input-search"
+                type="text"
+                placeholder="Search by ingredient"
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+              />
+              <Link
+                to={
+                  searchText.trim() !== "" ? `/ingredient/${searchText}` : "/"
+                }
+                className="search-button">
+                Search
+              </Link>
             </div>
             <div className="button-container">
-                <Link to={'/random-dish'} className="randomRecipe">
-                    Random Recipe
-                </Link>
-                <Link to="/my-favorites" className="favoriteRecipe">
-                    My Favorites
-                </Link>
+              <Link to={"/random-dish"} className="randomRecipe">
+                Random Recipe
+              </Link>
             </div>
-            <div className="search-container">
-                <input
-                    className="input-search"
-                    type="text"
-                    placeholder="Enter an ingredient"
-                    value={searchText}
-                    onChange={(e) => setSearchText(e.target.value)}
-                />
-                <Link
-                    to={searchText.trim() !== '' ? `/ingredient/${searchText}` : '/'}
-                    className="search-button"
-                >
-                    Search
-                </Link>
+            <div className="button-container">
+              <Link to="/my-favorites" className="favoriteRecipe">
+                My Favorites
+              </Link>
             </div>
-        </nav>
-    );
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
 }
 
 export default Navbar;

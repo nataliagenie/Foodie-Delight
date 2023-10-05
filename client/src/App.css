@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 body {
   height: 100vh;
@@ -23,14 +24,21 @@ h1 a {
   text-decoration: none; /* Remove underline from the link within the h1 */
 }
 
-.Navbar {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center items horizontally */
-  width: 100%;
-  margin-top: 20px;
+.wrapper{
+  display: grid;
+  
 }
-.randomRecipe,
+.header-container {
+  display: grid;
+  
+}
+header{
+  background-color: #ece6ae;
+  
+  grid-template-columns: 60% 40%;
+  
+}
+/* .randomRecipe,
 .favoriteRecipe{
   text-decoration: none;
   padding: 10px;
@@ -41,8 +49,8 @@ h1 a {
   font-family: futura;
   font-weight: bold;
   margin-right: 20px;
-}
-.search-container {
+} */
+/* .search-container {
   margin-top: 30px;
 }
 .input-search {
@@ -60,7 +68,7 @@ h1 a {
   font-weight: bold;
   margin-left: 10px;
   margin-right: 20px;
-}
+} */
 /* Add padding to the like button and set the background color */
 .like-button {
   padding: 10px;
