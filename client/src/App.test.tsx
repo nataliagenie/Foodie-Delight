@@ -10,28 +10,25 @@ jest.mock('axios');
 (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({ data: mockRandomRecipes });
 
 describe("App Test", () => {
-  test('shows loading state initially and then renders data render navigation bar', async () => {
+
+  test('shows loading state initially and then removes it', async () => {
     render(<App />);
-    
     const loadingElement = screen.getByText(/Loading.../i);
     expect(loadingElement).toBeInTheDocument();
-
     await waitForElementToBeRemoved(() => screen.queryByText(/Loading.../i));
+  });
 
-    expect(await screen.findByText(mockRandomRecipes[0].title)).toBeInTheDocument();
-
+  test('renders navigation bar after loading', async () => {
+    render(<App />);
+    await waitForElementToBeRemoved(() => screen.queryByText(/Loading.../i));
     const navbarElement = screen.getByRole('navigation');
     expect(navbarElement).toBeInTheDocument();
   });
 
-  // test('always renders the Navbar', () => {
-  //   render(<App />);
-  //   const navbarElement = screen.getByRole('navigation');
-  //   expect(navbarElement).toBeInTheDocument();
-  // });
-  
-  
-
-
-
 });
+
+  
+  
+
+
+

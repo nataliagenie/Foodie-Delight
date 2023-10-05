@@ -6,13 +6,14 @@ export const mockRandomRecipes: RecipeType[] = [
         id: 1234567890,
         title: 'Mock Recipe Title',
         image: 'https://path/to/mock/image.jpg',
-        // extendedIngredients: [
-        //     { original: '1 cup of mock ingredient 1' },
-        //     { original: '2 spoons of mock ingredient 2' },
-        // ],
+        extendedIngredients: [
+            { original: '1 cup of mock ingredient 1' },
+            { original: '2 spoons of mock ingredient 2' },
+        ],
         instructions: 'cook dat shizz',
         analyzedInstructions: [
             {
+                name: 'Some name for this instruction set',
                 steps: [
                     { number: 1, step: 'Mock instruction step 1' },
                     { number: 2, step: 'Mock instruction step 2' },
@@ -21,5 +22,6 @@ export const mockRandomRecipes: RecipeType[] = [
         ],
     }
 ];
+
   
  // "axios": "axios/dist/node/axios.cjs",

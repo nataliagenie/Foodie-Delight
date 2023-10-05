@@ -65,8 +65,6 @@ describe("NavBar", () => {
     expect(link).toHaveAttribute('href', '/my-favorites'); 
 });
 
-
-
 });
  });
 

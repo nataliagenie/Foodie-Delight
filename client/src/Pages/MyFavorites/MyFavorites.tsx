@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchLikedDishes, removeFromFavorites } from '../../apiServices/apiServices';
+import { fetchLikedDishes, removeFromFavorites } from '../../ApiServices/apiServices';
 import { FavoriteRecipeType } from '../../@types/recipe';
 import '../MyFavorites/MyFavorites.css'
  

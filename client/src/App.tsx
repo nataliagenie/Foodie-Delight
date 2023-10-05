@@ -7,7 +7,7 @@ import Recipe from './Pages/Recipe/Recipe';
 import MyFavorites from './Pages/MyFavorites/MyFavorites';
 import SearchResults from './Pages/SearchResults/SearchResults';
 import DishGenerator from './Pages/DishGenerator/DishGenerator';
-import { fetchRandomDish } from './apiServices/apiServices'
+import { fetchRandomDish } from './ApiServices/apiServices'
 import HomePage from './Pages/HomePage/HomePage'; 
 import { RecipeType, Instruction, HomePageProps } from './@types/recipe';
 

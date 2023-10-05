@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchRandomDish, handleLikeClick } from '../../apiServices/apiServices';
+import { fetchRandomDish, handleLikeClick } from '../../ApiServices/apiServices';
 import { RecipeType } from '../../@types/recipe';
 
 
